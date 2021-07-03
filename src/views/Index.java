@@ -1,14 +1,14 @@
 package views;
 
-import Controllers.Conexion;
+import Controllers.ConnectionDB;
 import java.awt.Component;
 import java.sql.Connection;
 import views.admin.Login;
 
 public class Index extends javax.swing.JFrame {
 
-    public static Conexion con = new Conexion();
-    public static Connection conexion = con.conectar();
+    public static ConnectionDB con = new ConnectionDB();
+    public static Connection connection = con.conectar();
     
     public Index() {
         initComponents();
@@ -17,7 +17,6 @@ public class Index extends javax.swing.JFrame {
         Login login = new Login();
         Index.desktopPane.add(login);
         login.show();
-        
     }
 
     @SuppressWarnings("unchecked")
