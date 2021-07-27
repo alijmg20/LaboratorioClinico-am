@@ -9,6 +9,9 @@ import views.Empleados.TipoEmpleado;
 import views.Pacientes.ListadoPacientes;
 import views.Pacientes.Pacientes;
 import views.admin.Login;
+import views.Citas.Citas;
+import views.examenes.Categoria;
+import views.examenes.Examenes;
 
 public class Index extends javax.swing.JFrame {
 
@@ -29,7 +32,13 @@ public class Index extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -49,10 +58,56 @@ public class Index extends javax.swing.JFrame {
 
         desktopPane.setToolTipText("");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        desktopPane.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1638, 1067);
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setText("Examenes");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButton1);
+        jButton1.setBounds(150, 520, 180, 50);
+
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setText("Empleados");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(jButton2);
+        jButton2.setBounds(150, 400, 180, 50);
+
+        jButton3.setBackground(new java.awt.Color(255, 153, 0));
+        jButton3.setText("Pacientes");
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        desktopPane.add(jButton3);
+        jButton3.setBounds(150, 190, 180, 50);
+
+        jButton4.setBackground(new java.awt.Color(255, 153, 0));
+        jButton4.setText("Citas");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        desktopPane.add(jButton4);
+        jButton4.setBounds(150, 290, 180, 50);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
+        jLabel2.setText("<html>\n\t<body>\n\t\tSoftware administrativo\n\t\t<br>\n\t\tpara el control y gestión\n\t\t<br>\n\t\tde laboratorios clinicos\n\t</body>\n\n</html>");
+        desktopPane.add(jLabel2);
+        jLabel2.setBounds(720, 20, 450, 330);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 150)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setText("AMLAB");
+        desktopPane.add(jLabel3);
+        jLabel3.setBounds(720, 400, 480, 250);
+
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
+        Fondo.setRequestFocusEnabled(false);
+        Fondo.setVerifyInputWhenFocusTarget(false);
+        desktopPane.add(Fondo);
+        Fondo.setBounds(0, 0, 1600, 1067);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Pacientes");
@@ -81,11 +136,21 @@ public class Index extends javax.swing.JFrame {
         helpMenu1.setText("Examenes");
 
         contentMenuItem1.setMnemonic('c');
-        contentMenuItem1.setText("Contents");
+        contentMenuItem1.setText("Categorias");
+        contentMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem1ActionPerformed(evt);
+            }
+        });
         helpMenu1.add(contentMenuItem1);
 
         aboutMenuItem1.setMnemonic('a');
-        aboutMenuItem1.setText("About");
+        aboutMenuItem1.setText("Acciones examenes");
+        aboutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem1ActionPerformed(evt);
+            }
+        });
         helpMenu1.add(aboutMenuItem1);
 
         menuBar.add(helpMenu1);
@@ -126,7 +191,12 @@ public class Index extends javax.swing.JFrame {
         helpMenu.setText("Citas");
 
         contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Crear citas");
+        contentMenuItem.setText("Acciones de citas");
+        contentMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(contentMenuItem);
 
         aboutMenuItem.setMnemonic('a');
@@ -181,6 +251,32 @@ public class Index extends javax.swing.JFrame {
         listado.show();
     }//GEN-LAST:event_cutMenuItem1ActionPerformed
 
+    private void contentMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem1ActionPerformed
+        Categoria categorias = new Categoria();
+        Index.desktopPane.add(categorias);
+        categorias.show();
+    }//GEN-LAST:event_contentMenuItem1ActionPerformed
+
+    private void aboutMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem1ActionPerformed
+        Examenes examenes = new Examenes();
+        Index.desktopPane.add(examenes);
+        examenes.show();
+    }//GEN-LAST:event_aboutMenuItem1ActionPerformed
+
+    private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
+        Citas citas = new Citas();
+        Index.desktopPane.add(citas);
+        citas.show();
+    }//GEN-LAST:event_contentMenuItemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -223,8 +319,12 @@ public class Index extends javax.swing.JFrame {
         }
 
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Fondo;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JMenuItem contentMenuItem;
@@ -237,7 +337,12 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu helpMenu1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private static javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem saveMenuItem;

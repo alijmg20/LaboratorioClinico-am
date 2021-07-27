@@ -5,6 +5,9 @@
  */
 package views.examenes;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author alijmg
@@ -16,6 +19,9 @@ public class Examenes extends javax.swing.JInternalFrame {
      */
     public Examenes() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = this.getSize();
+        this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
     }
 
     /**
@@ -54,7 +60,14 @@ public class Examenes extends javax.swing.JInternalFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Ventana de examenes");
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("Ventana de examenes");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
