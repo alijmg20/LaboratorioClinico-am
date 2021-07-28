@@ -10,6 +10,11 @@ import views.Pacientes.ListadoPacientes;
 import views.Pacientes.Pacientes;
 import views.admin.Login;
 import views.Citas.Citas;
+import views.Facturas.Facturas;
+import views.Facturas.visualizarExamen;
+import views.Facturas.visualizarFacturas;
+import views.Muestras.DatosMuestras;
+import views.Muestras.Muestras;
 import views.examenes.Categoria;
 import views.examenes.Examenes;
 
@@ -36,6 +41,7 @@ public class Index extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
@@ -56,6 +62,9 @@ public class Index extends javax.swing.JFrame {
         helpMenu2 = new javax.swing.JMenu();
         contentMenuItem2 = new javax.swing.JMenuItem();
         aboutMenuItem2 = new javax.swing.JMenuItem();
+        helpMenu3 = new javax.swing.JMenu();
+        contentMenuItem3 = new javax.swing.JMenuItem();
+        aboutMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,10 +99,16 @@ public class Index extends javax.swing.JFrame {
         jButton3.setBounds(150, 190, 180, 50);
 
         jButton4.setBackground(new java.awt.Color(255, 153, 0));
-        jButton4.setText("Citas");
+        jButton4.setText("Facturas");
         jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         desktopPane.add(jButton4);
-        jButton4.setBounds(150, 290, 180, 50);
+        jButton4.setBounds(150, 620, 180, 50);
+
+        jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setText("Citas");
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        desktopPane.add(jButton5);
+        jButton5.setBounds(150, 290, 180, 50);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         jLabel2.setText("<html>\n\t<body>\n\t\tSoftware administrativo\n\t\t<br>\n\t\tpara el control y gestión\n\t\t<br>\n\t\tde laboratorios clinicos\n\t</body>\n\n</html>");
@@ -222,9 +237,37 @@ public class Index extends javax.swing.JFrame {
 
         aboutMenuItem2.setMnemonic('a');
         aboutMenuItem2.setText("Resultados de muestras");
+        aboutMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem2ActionPerformed(evt);
+            }
+        });
         helpMenu2.add(aboutMenuItem2);
 
         menuBar.add(helpMenu2);
+
+        helpMenu3.setMnemonic('h');
+        helpMenu3.setText("Facturas");
+
+        contentMenuItem3.setMnemonic('c');
+        contentMenuItem3.setText("Acciones de facturas");
+        contentMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem3ActionPerformed(evt);
+            }
+        });
+        helpMenu3.add(contentMenuItem3);
+
+        aboutMenuItem3.setMnemonic('a');
+        aboutMenuItem3.setText("Ver lista de facturas");
+        aboutMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem3ActionPerformed(evt);
+            }
+        });
+        helpMenu3.add(aboutMenuItem3);
+
+        menuBar.add(helpMenu3);
 
         setJMenuBar(menuBar);
 
@@ -300,7 +343,32 @@ public class Index extends javax.swing.JFrame {
 
     private void contentMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem2ActionPerformed
         // TODO add your handling code here:
+        Muestras muestra = new Muestras();
+        Index.desktopPane.add(muestra);
+        muestra.show();
     }//GEN-LAST:event_contentMenuItem2ActionPerformed
+
+    private void contentMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem3ActionPerformed
+        
+        Facturas factura = new Facturas();
+        Index.desktopPane.add(factura);
+        factura.show();
+                
+    }//GEN-LAST:event_contentMenuItem3ActionPerformed
+
+    private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        visualizarFacturas facturas = new visualizarFacturas();
+        Index.desktopPane.add(facturas);
+        facturas.show();
+    }//GEN-LAST:event_aboutMenuItem3ActionPerformed
+
+    private void aboutMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        DatosMuestras datom = new DatosMuestras();
+        Index.desktopPane.add(datom);
+        datom.show();
+    }//GEN-LAST:event_aboutMenuItem2ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -353,9 +421,11 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JMenuItem aboutMenuItem2;
+    private javax.swing.JMenuItem aboutMenuItem3;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem contentMenuItem1;
     private javax.swing.JMenuItem contentMenuItem2;
+    private javax.swing.JMenuItem contentMenuItem3;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem cutMenuItem1;
@@ -365,10 +435,12 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu helpMenu1;
     private javax.swing.JMenu helpMenu2;
+    private javax.swing.JMenu helpMenu3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private static javax.swing.JMenuBar menuBar;
