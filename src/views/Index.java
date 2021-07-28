@@ -53,6 +53,9 @@ public class Index extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
+        helpMenu2 = new javax.swing.JMenu();
+        contentMenuItem2 = new javax.swing.JMenuItem();
+        aboutMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,6 +208,24 @@ public class Index extends javax.swing.JFrame {
 
         menuBar.add(helpMenu);
 
+        helpMenu2.setMnemonic('h');
+        helpMenu2.setText("Muestras");
+
+        contentMenuItem2.setMnemonic('c');
+        contentMenuItem2.setText("Analisis de muestra");
+        contentMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem2ActionPerformed(evt);
+            }
+        });
+        helpMenu2.add(contentMenuItem2);
+
+        aboutMenuItem2.setMnemonic('a');
+        aboutMenuItem2.setText("Resultados de muestras");
+        helpMenu2.add(aboutMenuItem2);
+
+        menuBar.add(helpMenu2);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,6 +298,10 @@ public class Index extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void contentMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contentMenuItem2ActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -327,8 +352,10 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JLabel Fondo;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem aboutMenuItem1;
+    private javax.swing.JMenuItem aboutMenuItem2;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem contentMenuItem1;
+    private javax.swing.JMenuItem contentMenuItem2;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem cutMenuItem1;
@@ -337,6 +364,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu helpMenu1;
+    private javax.swing.JMenu helpMenu2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

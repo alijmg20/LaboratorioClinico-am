@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/admin/Signup.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Pacientes/Pacientes.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Muestras/DatosMuestras.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Citas/SeleccionarPaciente.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Citas/DetallesCita.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Muestras/Muestras.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/examenes/Examenes.java</file>
             <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/admin/Login.java</file>
             <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Index.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Laboratorio-Clinico/src/views/Citas/Citas.java</file>
         </group>
     </open-files>
 </project-private>
