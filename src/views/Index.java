@@ -8,10 +8,8 @@ import views.Empleados.ListadoEmpleados;
 import views.Empleados.TipoEmpleado;
 import views.Pacientes.ListadoPacientes;
 import views.Pacientes.Pacientes;
-import views.admin.Login;
 import views.Citas.Citas;
 import views.Facturas.Facturas;
-import views.Facturas.visualizarExamen;
 import views.Facturas.visualizarFacturas;
 import views.Muestras.DatosMuestras;
 import views.Muestras.Muestras;
@@ -49,13 +47,13 @@ public class Index extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
-        helpMenu1 = new javax.swing.JMenu();
-        contentMenuItem1 = new javax.swing.JMenuItem();
-        aboutMenuItem1 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         copyMenuItem = new javax.swing.JMenuItem();
         cutMenuItem = new javax.swing.JMenuItem();
         cutMenuItem1 = new javax.swing.JMenuItem();
+        helpMenu1 = new javax.swing.JMenu();
+        contentMenuItem1 = new javax.swing.JMenuItem();
+        aboutMenuItem1 = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -150,29 +148,6 @@ public class Index extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
-        helpMenu1.setMnemonic('h');
-        helpMenu1.setText("Examenes");
-
-        contentMenuItem1.setMnemonic('c');
-        contentMenuItem1.setText("Categorias");
-        contentMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItem1ActionPerformed(evt);
-            }
-        });
-        helpMenu1.add(contentMenuItem1);
-
-        aboutMenuItem1.setMnemonic('a');
-        aboutMenuItem1.setText("Acciones examenes");
-        aboutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItem1ActionPerformed(evt);
-            }
-        });
-        helpMenu1.add(aboutMenuItem1);
-
-        menuBar.add(helpMenu1);
-
         editMenu.setMnemonic('e');
         editMenu.setText("Empleados");
 
@@ -205,6 +180,29 @@ public class Index extends javax.swing.JFrame {
 
         menuBar.add(editMenu);
 
+        helpMenu1.setMnemonic('h');
+        helpMenu1.setText("Examenes del sistema");
+
+        contentMenuItem1.setMnemonic('c');
+        contentMenuItem1.setText("Categorias");
+        contentMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem1ActionPerformed(evt);
+            }
+        });
+        helpMenu1.add(contentMenuItem1);
+
+        aboutMenuItem1.setMnemonic('a');
+        aboutMenuItem1.setText("Acciones examenes");
+        aboutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItem1ActionPerformed(evt);
+            }
+        });
+        helpMenu1.add(aboutMenuItem1);
+
+        menuBar.add(helpMenu1);
+
         helpMenu.setMnemonic('h');
         helpMenu.setText("Citas");
 
@@ -224,10 +222,10 @@ public class Index extends javax.swing.JFrame {
         menuBar.add(helpMenu);
 
         helpMenu2.setMnemonic('h');
-        helpMenu2.setText("Muestras");
+        helpMenu2.setText("Examenes de pacientes");
 
         contentMenuItem2.setMnemonic('c');
-        contentMenuItem2.setText("Analisis de muestra");
+        contentMenuItem2.setText("Analizar muestras de examenes");
         contentMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contentMenuItem2ActionPerformed(evt);

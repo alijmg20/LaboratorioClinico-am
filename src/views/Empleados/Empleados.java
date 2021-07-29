@@ -33,6 +33,7 @@ public class Empleados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bgsexo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -171,10 +172,12 @@ public class Empleados extends javax.swing.JInternalFrame {
         jLabel4.setText("Nombre");
 
         rbH.setBackground(new java.awt.Color(255, 255, 255));
+        bgsexo.add(rbH);
         rbH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbH.setText("Hombre");
 
         rbM.setBackground(new java.awt.Color(255, 255, 255));
+        bgsexo.add(rbM);
         rbM.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbM.setText("Mujer");
 
@@ -438,6 +441,7 @@ public class Empleados extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgsexo;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrar1;
