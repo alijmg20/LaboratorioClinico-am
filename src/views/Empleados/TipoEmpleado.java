@@ -302,9 +302,13 @@ public class TipoEmpleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String nombre = this.txtNombre.getText();
+        if(!this.txtNombre.getText().isEmpty()){
+            String nombre = this.txtNombre.getText();
+            tipoEmpleado.create(nombre);
+        }else{
+            JOptionPane.showMessageDialog(null, "¡Debe rellenar todos los campos!","Accion no realizada",JOptionPane.WARNING_MESSAGE);
+        }
         
-        tipoEmpleado.create(nombre);
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

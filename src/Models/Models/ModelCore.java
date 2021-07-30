@@ -29,6 +29,7 @@ public class ModelCore {
         public DefaultTableModel search() {
         return new DefaultTableModel();
     }
+        
 
 //------------------------------------------------------------------------------
     public void obtenerTiposEmpleados(JComboBox cb) {
@@ -45,4 +46,5 @@ public class ModelCore {
         }
     }
 
+    
 }

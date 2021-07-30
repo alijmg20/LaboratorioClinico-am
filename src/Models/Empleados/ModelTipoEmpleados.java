@@ -15,7 +15,7 @@ public class ModelTipoEmpleados extends ModelCore {
     public void create(String nombre) {
 
         try {
-            String SQL = "CALL crearTipoEmpleado(?)";
+            String SQL = "CALL registrarTipoEmpleado(?)";
             PreparedStatement consulta = Index.connection.prepareStatement(SQL);
 
             consulta.setString(1, nombre);
