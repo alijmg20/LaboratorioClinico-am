@@ -9,6 +9,7 @@ import views.Empleados.TipoEmpleado;
 import views.Pacientes.ListadoPacientes;
 import views.Pacientes.Pacientes;
 import views.Citas.Citas;
+import views.Empleados.Empleados;
 import views.Facturas.Facturas;
 import views.Facturas.visualizarFacturas;
 import views.Muestras.DatosMuestras;
@@ -49,7 +50,7 @@ public class Index extends javax.swing.JFrame {
         saveMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         copyMenuItem = new javax.swing.JMenuItem();
-        cutMenuItem = new javax.swing.JMenuItem();
+        copyMenuItem1 = new javax.swing.JMenuItem();
         cutMenuItem1 = new javax.swing.JMenuItem();
         helpMenu1 = new javax.swing.JMenu();
         contentMenuItem1 = new javax.swing.JMenuItem();
@@ -160,14 +161,14 @@ public class Index extends javax.swing.JFrame {
         });
         editMenu.add(copyMenuItem);
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Acciones de empleados");
-        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        copyMenuItem1.setMnemonic('y');
+        copyMenuItem1.setText("Acciones de empleados");
+        copyMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItemActionPerformed(evt);
+                copyMenuItem1ActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem);
+        editMenu.add(copyMenuItem1);
 
         cutMenuItem1.setMnemonic('t');
         cutMenuItem1.setText("Listar Empleados");
@@ -301,12 +302,6 @@ public class Index extends javax.swing.JFrame {
         tipoEmpleado.show();
     }//GEN-LAST:event_copyMenuItemActionPerformed
 
-    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
-        Empleados empleados = new Empleados();
-        Index.desktopPane.add(empleados);
-        empleados.show();
-    }//GEN-LAST:event_cutMenuItemActionPerformed
-
     private void cutMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItem1ActionPerformed
         ListadoEmpleados  listado = new ListadoEmpleados();
         Index.desktopPane.add(listado);
@@ -368,6 +363,12 @@ public class Index extends javax.swing.JFrame {
         datom.show();
     }//GEN-LAST:event_aboutMenuItem2ActionPerformed
 
+    private void copyMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItem1ActionPerformed
+        Empleados empleados = new Empleados();
+        Index.desktopPane.add(empleados);
+        empleados.show();
+    }//GEN-LAST:event_copyMenuItem1ActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -425,7 +426,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem contentMenuItem2;
     private javax.swing.JMenuItem contentMenuItem3;
     private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
+    private javax.swing.JMenuItem copyMenuItem1;
     private javax.swing.JMenuItem cutMenuItem1;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
