@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/views/Index.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/views/Empleados/TipoEmpleado.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/views/Empleados/ListadoEmpleados.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/Models/Empleados/ModelEmpleados.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/views/Empleados/Empleados.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/LaboratorioClinico-am/src/Models/Models/ModelCore.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/Empleados/Empleados.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Pacientes/ModelPacientes.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/Pacientes/Pacientes.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Empleados/ModelEmpleados.java</file>
         </group>
     </open-files>
 </project-private>

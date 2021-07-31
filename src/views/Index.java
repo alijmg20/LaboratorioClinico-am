@@ -41,8 +41,6 @@ public class Index extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -108,17 +106,6 @@ public class Index extends javax.swing.JFrame {
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         desktopPane.add(jButton5);
         jButton5.setBounds(150, 290, 180, 50);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
-        jLabel2.setText("<html>\n\t<body>\n\t\tSoftware administrativo\n\t\t<br>\n\t\tpara el control y gestión\n\t\t<br>\n\t\tde laboratorios clinicos\n\t</body>\n\n</html>");
-        desktopPane.add(jLabel2);
-        jLabel2.setBounds(720, 20, 450, 330);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 150)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel3.setText("AMLAB");
-        desktopPane.add(jLabel3);
-        jLabel3.setBounds(720, 400, 480, 250);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
@@ -440,8 +427,6 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private static javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
