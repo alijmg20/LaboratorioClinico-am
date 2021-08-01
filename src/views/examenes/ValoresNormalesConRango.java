@@ -1,11 +1,13 @@
 package views.examenes;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author alijmg
@@ -17,6 +19,9 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
      */
     public ValoresNormalesConRango() {
         initComponents();
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = this.getSize();
+        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);
     }
 
     /**
@@ -168,7 +173,7 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones"));
 
-        jButton5.setText("Registrar");
+        jButton5.setText("Ingresar");
 
         jButton6.setText("Actualizar");
 
@@ -189,7 +194,7 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

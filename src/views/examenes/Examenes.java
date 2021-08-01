@@ -52,7 +52,7 @@ public class Examenes extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox();
         lbname3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
-        jComboBox3 = new javax.swing.JComboBox();
+        cbValorNormal = new javax.swing.JComboBox();
         txtId = new javax.swing.JTextField();
         lbname5 = new javax.swing.JLabel();
         lbname4 = new javax.swing.JLabel();
@@ -85,6 +85,11 @@ public class Examenes extends javax.swing.JInternalFrame {
         btnClear.setText("Limpiar");
 
         jButton2.setText("Ingresa aqui los valores normales");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,7 +164,7 @@ public class Examenes extends javax.swing.JInternalFrame {
         lbname3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname3.setText("Categoria");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecciona una opcion", "con rango", "sin rango" }));
+        cbValorNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecciona una opcion", "con rango", "sin rango" }));
 
         txtId.setEditable(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +212,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                             .addComponent(lbname4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbValorNormal, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 250, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -236,7 +241,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                     .addComponent(lbname3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbValorNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbname4))
                 .addContainerGap())
         );
@@ -335,16 +340,20 @@ public class Examenes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrar1;
     private javax.swing.JButton btnRegistrar2;
+    private javax.swing.JComboBox cbValorNormal;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
