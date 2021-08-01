@@ -34,7 +34,7 @@ public class ModelTipoEmpleados extends ModelCore {
         String[] registros = new String[2];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);
-        String SQL = "CALL mostrarListaTipoEmpleado()";
+        String SQL = "SELECT * FROM mostrarListaTipoEmpleado";
 
         try {
             Statement consulta = Index.connection.createStatement();

@@ -21,7 +21,7 @@ public class Index extends javax.swing.JFrame {
 
     public static ConnectionDB con = new ConnectionDB();
     public static Connection connection = con.conectar();
-    
+
     public Index() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -303,7 +303,7 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_copyMenuItemActionPerformed
 
     private void cutMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItem1ActionPerformed
-        ListadoEmpleados  listado = new ListadoEmpleados();
+        ListadoEmpleados listado = new ListadoEmpleados();
         Index.desktopPane.add(listado);
         listado.show();
     }//GEN-LAST:event_cutMenuItem1ActionPerformed
@@ -331,7 +331,9 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Empleados empleados = new Empleados();
+        Index.desktopPane.add(empleados);
+        empleados.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void contentMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem2ActionPerformed
@@ -342,11 +344,11 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_contentMenuItem2ActionPerformed
 
     private void contentMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem3ActionPerformed
-        
+
         Facturas factura = new Facturas();
         Index.desktopPane.add(factura);
         factura.show();
-                
+
     }//GEN-LAST:event_contentMenuItem3ActionPerformed
 
     private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
@@ -406,14 +408,12 @@ public class Index extends javax.swing.JFrame {
         for (Component component : components) {
             component.setEnabled(false);
         }
-        for(Component bar : bars){
+        for (Component bar : bars) {
             bar.setEnabled(false);
         }
 
     }
-    
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
