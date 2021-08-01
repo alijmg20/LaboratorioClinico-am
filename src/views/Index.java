@@ -2,7 +2,11 @@ package views;
 
 import Controllers.ConnectionDB;
 import java.awt.Component;
+import java.awt.Image;
 import java.sql.Connection;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import views.Empleados.Empleados;
 import views.Empleados.ListadoEmpleados;
 import views.Empleados.TipoEmpleado;
@@ -25,6 +29,7 @@ public class Index extends javax.swing.JFrame {
     public Index() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+    
 //        stopComponents();
 //        Login login = new Login();
 //        Index.desktopPane.add(login);
@@ -38,7 +43,7 @@ public class Index extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonPacientes = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
@@ -67,45 +72,79 @@ public class Index extends javax.swing.JFrame {
 
         desktopPane.setToolTipText("");
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setBackground(new java.awt.Color(180, 185, 210));
+        jButton1.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Examenes.png"))); // NOI18N
         jButton1.setText("Examenes");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setMaximumSize(new java.awt.Dimension(129, 61));
+        jButton1.setMinimumSize(new java.awt.Dimension(129, 61));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         desktopPane.add(jButton1);
-        jButton1.setBounds(150, 520, 180, 50);
+        jButton1.setBounds(150, 520, 180, 60);
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 0));
+        jButton2.setBackground(new java.awt.Color(180, 185, 210));
+        jButton2.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/empleado.png"))); // NOI18N
         jButton2.setText("Empleados");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setMaximumSize(new java.awt.Dimension(129, 61));
+        jButton2.setMinimumSize(new java.awt.Dimension(129, 61));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         desktopPane.add(jButton2);
-        jButton2.setBounds(150, 400, 180, 50);
+        jButton2.setBounds(150, 400, 180, 60);
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("Pacientes");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        desktopPane.add(jButton3);
-        jButton3.setBounds(150, 190, 180, 50);
+        botonPacientes.setBackground(new java.awt.Color(180, 185, 210));
+        botonPacientes.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        botonPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/paciente.png"))); // NOI18N
+        botonPacientes.setText("Pacientes");
+        botonPacientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        botonPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPacientesActionPerformed(evt);
+            }
+        });
+        desktopPane.add(botonPacientes);
+        botonPacientes.setBounds(150, 170, 180, 60);
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 0));
+        jButton4.setBackground(new java.awt.Color(180, 185, 210));
+        jButton4.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Facturas.png"))); // NOI18N
         jButton4.setText("Facturas");
         jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.setMaximumSize(new java.awt.Dimension(129, 61));
+        jButton4.setMinimumSize(new java.awt.Dimension(129, 61));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         desktopPane.add(jButton4);
-        jButton4.setBounds(150, 620, 180, 50);
+        jButton4.setBounds(150, 620, 180, 60);
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 0));
+        jButton5.setBackground(new java.awt.Color(180, 185, 210));
+        jButton5.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Citas.png"))); // NOI18N
         jButton5.setText("Citas");
         jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.setMaximumSize(new java.awt.Dimension(129, 61));
+        jButton5.setMinimumSize(new java.awt.Dimension(129, 61));
+        jButton5.setPreferredSize(new java.awt.Dimension(129, 61));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         desktopPane.add(jButton5);
-        jButton5.setBounds(150, 290, 180, 50);
+        jButton5.setBounds(150, 290, 180, 60);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
@@ -271,6 +310,8 @@ public class Index extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         ListadoPacientes listadoPacientes = new ListadoPacientes();
         Index.desktopPane.add(listadoPacientes);
@@ -314,7 +355,9 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_contentMenuItemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Examenes examenes = new Examenes();
+        Index.desktopPane.add(examenes);
+        examenes.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -339,14 +382,14 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_contentMenuItem3ActionPerformed
 
     private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
-        // TODO add your handling code here:
+       
         visualizarFacturas facturas = new visualizarFacturas();
         Index.desktopPane.add(facturas);
         facturas.show();
     }//GEN-LAST:event_aboutMenuItem3ActionPerformed
 
     private void aboutMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem2ActionPerformed
-        // TODO add your handling code here:
+      
         DatosMuestras datom = new DatosMuestras();
         Index.desktopPane.add(datom);
         datom.show();
@@ -357,6 +400,26 @@ public class Index extends javax.swing.JFrame {
         Index.desktopPane.add(empleados);
         empleados.show();
     }//GEN-LAST:event_copyMenuItem1ActionPerformed
+
+    private void botonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPacientesActionPerformed
+      
+        Pacientes paciente = new Pacientes();
+        Index.desktopPane.add(paciente);
+        paciente.show();
+    }//GEN-LAST:event_botonPacientesActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       
+        Citas citas = new Citas();
+        Index.desktopPane.add(citas);
+        citas.show();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Facturas factura = new Facturas();
+        Index.desktopPane.add(factura);
+        factura.show();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -408,6 +471,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutMenuItem1;
     private javax.swing.JMenuItem aboutMenuItem2;
     private javax.swing.JMenuItem aboutMenuItem3;
+    private javax.swing.JButton botonPacientes;
     private javax.swing.JMenuItem contentMenuItem;
     private javax.swing.JMenuItem contentMenuItem1;
     private javax.swing.JMenuItem contentMenuItem2;
@@ -424,7 +488,6 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private static javax.swing.JMenuBar menuBar;

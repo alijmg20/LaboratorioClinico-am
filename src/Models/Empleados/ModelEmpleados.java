@@ -51,7 +51,7 @@ public class ModelEmpleados extends ModelCore {
         String[] registros = new String[11];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);
-        String SQL = "CALL mostrarListaEmpleado()";
+        String SQL = "SELECT * FROM mostrarListaEmpleado";
 
         try {
             Statement consulta = Index.connection.createStatement();
