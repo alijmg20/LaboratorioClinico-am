@@ -20,13 +20,17 @@ public class Pacientes extends javax.swing.JInternalFrame {
     DefaultTableModel tablaTodo = new DefaultTableModel();
     public static int id=0;
 
+
     public Pacientes() {
         initComponents();
-        this.tablePacientes.setModel(this.pacientes.mostrarInterfaz());
-        this.tablaTodo = this.pacientes.mostrarTxt();
+
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 50);
+        direcciontxt.setLineWrap(true);
+        direcciontxt.setWrapStyleWord(true);
+        this.tablePacientes.setModel(this.pacientes.mostrarInterfaz());
+        this.tablaTodo = this.pacientes.mostrarTxt();
     }
 
   

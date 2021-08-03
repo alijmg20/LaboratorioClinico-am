@@ -16,6 +16,9 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
      */
     public DatosMuestras() {
         initComponents();
+        
+        descripciontxt.setLineWrap(true);
+        descripciontxt.setWrapStyleWord(true);
     }
 
     /**
@@ -42,7 +45,7 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         lbname1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descripciontxt = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -124,9 +127,9 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname1.setText("Descripcion: ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descripciontxt.setColumns(20);
+        descripciontxt.setRows(5);
+        jScrollPane1.setViewportView(descripciontxt);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -256,6 +259,7 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrar1;
     private javax.swing.JButton btnRegistrar2;
+    private javax.swing.JTextArea descripciontxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -266,7 +270,6 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lbname;

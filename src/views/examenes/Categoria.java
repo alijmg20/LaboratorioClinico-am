@@ -1,20 +1,32 @@
 
 package views.examenes;
 
+import Models.Examenes.ModelCategoriasExamenes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import views.Empleados.Empleados;
 
 
 public class Categoria extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form TipoEmpleado
-     */
+        ModelCategoriasExamenes categoria = new ModelCategoriasExamenes();
+        DefaultTableModel tablaTodo = new DefaultTableModel();
+        public static int id = 0; 
+    
     public Categoria() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
+        this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
+        this.tablaTodo = this.categoria.mostrarTxt();
+        descripciontxt.setLineWrap(true);
+        descripciontxt.setWrapStyleWord(true);
     }
 
     /**
@@ -29,19 +41,19 @@ public class Categoria extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnRegistrar1 = new javax.swing.JButton();
-        btnRegistrar2 = new javax.swing.JButton();
+        actualizar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCategoria = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lbname = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        nombretxt = new javax.swing.JTextField();
         lbname1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descripciontxt = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -61,13 +73,33 @@ public class Categoria extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones"));
 
-        btnRegistrar1.setText("Actualizar");
+        actualizar.setText("Actualizar");
+        actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarActionPerformed(evt);
+            }
+        });
 
-        btnRegistrar2.setText("Eliminar");
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,9 +109,9 @@ public class Categoria extends javax.swing.JInternalFrame {
                 .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrar1)
+                .addComponent(actualizar)
                 .addGap(32, 32, 32)
-                .addComponent(btnRegistrar2)
+                .addComponent(eliminar)
                 .addGap(18, 18, 18)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -89,8 +121,8 @@ public class Categoria extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar1)
-                    .addComponent(btnRegistrar2)
+                    .addComponent(actualizar)
+                    .addComponent(eliminar)
                     .addComponent(btnRegistrar)
                     .addComponent(btnClear))
                 .addGap(26, 26, 26))
@@ -103,7 +135,7 @@ public class Categoria extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,7 +143,12 @@ public class Categoria extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tableCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCategoriaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableCategoria);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos de categoria de examenes"));
@@ -120,9 +157,9 @@ public class Categoria extends javax.swing.JInternalFrame {
         lbname.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname.setText("Nombre");
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        nombretxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                nombretxtActionPerformed(evt);
             }
         });
 
@@ -132,9 +169,9 @@ public class Categoria extends javax.swing.JInternalFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descripciontxt.setColumns(20);
+        descripciontxt.setRows(5);
+        jScrollPane1.setViewportView(descripciontxt);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,7 +184,7 @@ public class Categoria extends javax.swing.JInternalFrame {
                     .addComponent(lbname1))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(nombretxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
@@ -157,7 +194,7 @@ public class Categoria extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbname1)
@@ -254,16 +291,100 @@ public class Categoria extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
 
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_nombretxtActionPerformed
+
+    private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked
+        // TODO add your handling code here:
+        
+       // int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
+
+        
+        
+        
+        int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
+        try {
+            
+        id = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
+        System.out.println("Este es el id: "+id); 
+        this.nombretxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
+        this.descripciontxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 2).toString());
+ 
 
 
+        } catch (Exception ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_tableCategoriaMouseClicked
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        
+        if (validator()) {
+
+            String nombre = this.nombretxt.getText();
+            String descripcion = this.descripciontxt.getText();
+        
+      
+            this.categoria.create(nombre, descripcion);
+            this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
+            this.tablaTodo = categoria.mostrarTxt();
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
+        // TODO add your handling code here:
+        if (validator()) {
+         
+            String nombre = this.nombretxt.getText();
+            String descripcion = this.descripciontxt.getText();
+        
+      System.out.println("Este es el id que le llega a actualizar: "+id); 
+            this.categoria.update(id,nombre,descripcion);
+            this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
+            this.tablaTodo = categoria.mostrarTxt();
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_actualizarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar?");
+        if(decision == 0){
+            
+            this.categoria.delete(id);    
+            this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
+            this.tablaTodo = categoria.mostrarTxt();
+            this.nombretxt.setText("");
+            this.descripciontxt.setText("");
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+            this.nombretxt.setText("");
+            this.descripciontxt.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private boolean validator() {
+
+    return !this.nombretxt.getText().isEmpty() && !this.descripciontxt.getText().isEmpty();
+           
+ 
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizar;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrar1;
-    private javax.swing.JButton btnRegistrar2;
+    private javax.swing.JTextArea descripciontxt;
+    private javax.swing.JButton eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -273,11 +394,10 @@ public class Categoria extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbname;
     private javax.swing.JLabel lbname1;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField nombretxt;
+    private javax.swing.JTable tableCategoria;
     // End of variables declaration//GEN-END:variables
 }

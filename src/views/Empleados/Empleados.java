@@ -29,7 +29,9 @@ public class Empleados extends javax.swing.JInternalFrame {
         this.tablaTodo = this.empleados.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
-        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);
+        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);    
+        txtDireccion.setLineWrap(true);
+        txtDireccion.setWrapStyleWord(true);
     }
 
     /**
