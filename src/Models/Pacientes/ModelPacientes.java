@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import views.Index;
 
@@ -67,7 +68,7 @@ public class ModelPacientes extends ModelCore{
         String[] titulos = {" id "," nombre ", " cedula ", " sexo ", " fecha ", " correo ", " telefono ", " direccion "};
         String[] registros = new String[9];
 
-        DefaultTableModel tabla = new DefaultTableModel(null, titulos);
+        DefaultTableModel tabla = new DefaultTableModel(null, titulos);     
         String SQL = "SELECT * FROM mostrarListaPacientes";
 
         try {
@@ -88,7 +89,7 @@ public class ModelPacientes extends ModelCore{
                 tabla.addRow(registros);
 
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Hubo un error al mostrar datos: " + e.getMessage(), "Accion no realizada", JOptionPane.ERROR_MESSAGE);
         }

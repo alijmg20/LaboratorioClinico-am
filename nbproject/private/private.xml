@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/examenes/Categoria.java</file>
-            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Examenes/ModelCategoriasExamenes.java</file>
-            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Pacientes/ModelPacientes.java</file>
-            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/Pacientes/Pacientes.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/Pacientes/ListadoPacientes.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Pacientes/ModelListadoPacientes.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/views/Empleados/ListadoEmpleados.java</file>
+            <file>file:/C:/Users/Miguel%20Lugo/Desktop/BD/src/Models/Empleados/ModelListadoEmpleados.java</file>
         </group>
     </open-files>
 </project-private>

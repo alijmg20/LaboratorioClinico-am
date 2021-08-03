@@ -20,7 +20,6 @@ public class Pacientes extends javax.swing.JInternalFrame {
     DefaultTableModel tablaTodo = new DefaultTableModel();
     public static int id=0;
 
-
     public Pacientes() {
         initComponents();
 
