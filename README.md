@@ -1,2 +1,0 @@
-# LaboratorioClinico-am
-Prueba 
