@@ -29,7 +29,9 @@ public class Empleados extends javax.swing.JInternalFrame {
         this.tablaTodo = this.empleados.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
-        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);
+        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);    
+        txtDireccion.setLineWrap(true);
+        txtDireccion.setWrapStyleWord(true);
     }
 
     /**
@@ -192,6 +194,11 @@ public class Empleados extends javax.swing.JInternalFrame {
         rbH.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbH.setSelected(true);
         rbH.setText("Hombre");
+        rbH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbHActionPerformed(evt);
+            }
+        });
 
         rbM.setBackground(new java.awt.Color(255, 255, 255));
         bgSexo.add(rbM);
@@ -239,6 +246,12 @@ public class Empleados extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Password");
+
+        cbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -588,6 +601,14 @@ public class Empleados extends javax.swing.JInternalFrame {
         this.tableEmpleados.setModel(this.empleados.searchUnset(this.txtSearch.getText()));
         
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoActionPerformed
+
+    private void rbHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbHActionPerformed
 
     private boolean validator() {
 
