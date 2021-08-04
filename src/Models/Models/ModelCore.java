@@ -34,7 +34,7 @@ public class ModelCore {
 //------------------------------------------------------------------------------
     public void obtenerTiposEmpleados(JComboBox cb) {
         try {
-            String SQL = "CALL `mostrarListaTipoEmpleado`()";
+            String SQL = "SELECT * FROM mostrarListaTipoEmpleado";
             PreparedStatement consulta = Index.connection.prepareStatement(SQL);
             ResultSet resultado = consulta.executeQuery();
             cb.addItem("Seleccione una opcion");
