@@ -5,8 +5,10 @@
  */
 package views.examenes;
 
+import Models.Examenes.ModelExamenes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,11 +16,14 @@ import java.awt.Toolkit;
  */
 public class Examenes extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Examenes
-     */
+    DefaultTableModel tableTodo = new DefaultTableModel();
+    ModelExamenes examenes = new ModelExamenes();
+    
     public Examenes() {
         initComponents();
+        examenes.obtenerDatosCombobox(this.cbcategoria,"mostrarListaCategoria","nombre" );
+        this.tableExamenes.setModel(examenes.readUnsets());
+        this.tableTodo = this.examenes.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
@@ -42,16 +47,16 @@ public class Examenes extends javax.swing.JInternalFrame {
         btnClear = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableExamenes = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lbname = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lbname1 = new javax.swing.JLabel();
         txtName1 = new javax.swing.JTextField();
         lbname2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbunidad = new javax.swing.JComboBox();
         lbname3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbcategoria = new javax.swing.JComboBox();
         cbValorNormal = new javax.swing.JComboBox();
         txtId = new javax.swing.JTextField();
         lbname5 = new javax.swing.JLabel();
@@ -123,7 +128,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableExamenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -131,7 +136,7 @@ public class Examenes extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tableExamenes);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos de examen"));
@@ -205,7 +210,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbunidad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbname3)
@@ -213,7 +218,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbValorNormal, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 250, Short.MAX_VALUE))))
+                            .addComponent(cbcategoria, javax.swing.GroupLayout.Alignment.TRAILING, 0, 250, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -234,10 +239,10 @@ public class Examenes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbunidad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbname3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,9 +356,9 @@ public class Examenes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegistrar1;
     private javax.swing.JButton btnRegistrar2;
     private javax.swing.JComboBox cbValorNormal;
+    private javax.swing.JComboBox cbcategoria;
+    private javax.swing.JComboBox cbunidad;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -361,7 +366,6 @@ public class Examenes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbname;
     private javax.swing.JLabel lbname1;
@@ -369,6 +373,7 @@ public class Examenes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbname3;
     private javax.swing.JLabel lbname4;
     private javax.swing.JLabel lbname5;
+    private javax.swing.JTable tableExamenes;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtName1;

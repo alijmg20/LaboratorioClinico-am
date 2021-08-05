@@ -3,14 +3,13 @@ package Models.Models;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import views.Index;
 
 public class ModelCore {
 
 //------------------------------------------------------------------------------
-    public void create() {
+    public  void create() {
         System.out.println("This model register in database");
     }
 
@@ -31,20 +30,21 @@ public class ModelCore {
     }
         
 
-//------------------------------------------------------------------------------
-    public void obtenerTiposEmpleados(JComboBox cb) {
-        try {
-            String SQL = "SELECT * FROM mostrarListaTipoEmpleado";
+//------------------------------------------------------------------------------        
+    public void obtenerDatosCombobox(JComboBox cb,String funcion,String dato) {
+        try {                           //mostrarListaTipoEmpleado
+            String SQL = "SELECT * FROM "+funcion;
             PreparedStatement consulta = Index.connection.prepareStatement(SQL);
             ResultSet resultado = consulta.executeQuery();
             cb.addItem("Seleccione una opcion");
-            while (resultado.next()) {
-                cb.addItem(resultado.getString("nombre"));
+            while (resultado.next()) {      //"nombre"
+                cb.addItem(resultado.getString(dato));
             }
         } catch (Exception ex) {
 
         }
     }
+    
 
     
 }

@@ -1,6 +1,7 @@
 package views.examenes;
 
 import Models.Examenes.ModelCategoriasExamenes;
+import Models.Examenes.ModelUnidadesExamenes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;
@@ -10,21 +11,20 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import views.Empleados.Empleados;
 
-public class Categoria extends javax.swing.JInternalFrame {
+public class Unidad extends javax.swing.JInternalFrame {
 
-    ModelCategoriasExamenes categoria = new ModelCategoriasExamenes();
+    ModelUnidadesExamenes unidades = new ModelUnidadesExamenes();
     DefaultTableModel tablaTodo = new DefaultTableModel();
     public static int id = 0;
 
-    public Categoria() {
+    public Unidad() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 50);
-        this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
-        this.tablaTodo = this.categoria.mostrarTxt();
-        descripciontxt.setLineWrap(true);
-        descripciontxt.setWrapStyleWord(true);
+        this.tableUnidades.setModel(this.unidades.mostrarInterfaz());
+        this.tablaTodo = this.unidades.mostrarTxt();
+
     }
 
     /**
@@ -43,15 +43,11 @@ public class Categoria extends javax.swing.JInternalFrame {
         eliminar = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableCategoria = new javax.swing.JTable();
+        tableUnidades = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lbname = new javax.swing.JLabel();
-        nombretxt = new javax.swing.JTextField();
-        lbname1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descripciontxt = new javax.swing.JTextArea();
+        txtdescipcion = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -60,13 +56,13 @@ public class Categoria extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Categoria de examenes");
+        setTitle("Unidades de examenes");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("categoria de examenes");
+        jLabel3.setText("Unidades de examenes");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones"));
@@ -126,14 +122,7 @@ public class Categoria extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26))
         );
 
-        jButton1.setText("Volver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        tableCategoria.setModel(new javax.swing.table.DefaultTableModel(
+        tableUnidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -141,35 +130,25 @@ public class Categoria extends javax.swing.JInternalFrame {
 
             }
         ));
-        tableCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableCategoriaMouseClicked(evt);
+                tableUnidadesMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableCategoria);
+        jScrollPane2.setViewportView(tableUnidades);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos de categoria de examenes"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos de unidad de examenes"));
 
         lbname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbname.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbname.setText("Nombre");
+        lbname.setText("Descripcion");
 
-        nombretxt.addActionListener(new java.awt.event.ActionListener() {
+        txtdescipcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombretxtActionPerformed(evt);
+                txtdescipcionActionPerformed(evt);
             }
         });
-
-        lbname1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbname1.setText("Descripcion");
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        descripciontxt.setColumns(20);
-        descripciontxt.setRows(5);
-        jScrollPane1.setViewportView(descripciontxt);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -177,14 +156,10 @@ public class Categoria extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbname)
-                    .addComponent(lbname1))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nombretxt, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(lbname)
+                .addGap(42, 42, 42)
+                .addComponent(txtdescipcion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,12 +167,8 @@ public class Categoria extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname)
-                    .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbname1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(txtdescipcion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -222,7 +193,7 @@ public class Categoria extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,34 +215,34 @@ public class Categoria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel3.getAccessibleContext().setAccessibleName("Datos de unidades de examenes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -291,41 +262,31 @@ public class Categoria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
-
-    }//GEN-LAST:event_nombretxtActionPerformed
-
-    private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked
+    private void tableUnidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUnidadesMouseClicked
         // TODO add your handling code here:
 
        // int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
-        int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
+        int filaSeleccionada = this.tableUnidades.rowAtPoint(evt.getPoint());
         try {
 
             id = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
-            this.nombretxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
-            this.descripciontxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 2).toString());
+            this.txtdescipcion.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
 
         } catch (Exception ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_tableCategoriaMouseClicked
+    }//GEN-LAST:event_tableUnidadesMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
         if (validator()) {
 
-            String nombre = this.nombretxt.getText();
-            String descripcion = this.descripciontxt.getText();
+            String descripcion = this.txtdescipcion.getText();
 
-            this.categoria.create(nombre, descripcion);
-            this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
-            this.tablaTodo = categoria.mostrarTxt();
+            this.unidades.create(descripcion);
+            this.tableUnidades.setModel(this.unidades.mostrarInterfaz());
+            this.tablaTodo = unidades.mostrarTxt();
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -334,15 +295,16 @@ public class Categoria extends javax.swing.JInternalFrame {
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
         // TODO add your handling code here:
         if (validator()) {
+
+            String descripcion = this.txtdescipcion.getText();
+
             int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar este elemento?");
             if (decision == 0) {
-
-                String nombre = this.nombretxt.getText();
-                String descripcion = this.descripciontxt.getText();
-                this.categoria.update(id, nombre, descripcion);
-                this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
-                this.tablaTodo = categoria.mostrarTxt();
+                this.unidades.update(id, descripcion);
+                this.tableUnidades.setModel(this.unidades.mostrarInterfaz());
+                this.tablaTodo = unidades.mostrarTxt();
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -354,29 +316,33 @@ public class Categoria extends javax.swing.JInternalFrame {
         int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar?");
         if (decision == 0) {
 
-            this.categoria.delete(id);
-            this.tableCategoria.setModel(this.categoria.mostrarInterfaz());
-            this.tablaTodo = categoria.mostrarTxt();
-            this.nombretxt.setText("");
-            this.descripciontxt.setText("");
+            this.unidades.delete(id);
+            this.tableUnidades.setModel(this.unidades.mostrarInterfaz());
+            this.tablaTodo = unidades.mostrarTxt();
+            this.txtdescipcion.setText("");
+
         }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        this.nombretxt.setText("");
-        this.descripciontxt.setText("");
+        this.txtdescipcion.setText("");
+
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void txtdescipcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescipcionActionPerformed
+
+    }//GEN-LAST:event_txtdescipcionActionPerformed
+
     private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
-        
-        this.tableCategoria.setModel(this.categoria.search(this.txtsearch.getText()));
-        
+
+        this.tableUnidades.setModel(this.unidades.searchUnset(this.txtsearch.getText()));
+
     }//GEN-LAST:event_txtsearchKeyReleased
 
     private boolean validator() {
 
-        return !this.nombretxt.getText().isEmpty() && !this.descripciontxt.getText().isEmpty();
+        return !this.txtdescipcion.getText().isEmpty();
 
     }
 
@@ -385,21 +351,17 @@ public class Categoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton actualizar;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JTextArea descripciontxt;
     private javax.swing.JButton eliminar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbname;
-    private javax.swing.JLabel lbname1;
-    private javax.swing.JTextField nombretxt;
-    private javax.swing.JTable tableCategoria;
+    private javax.swing.JTable tableUnidades;
+    private javax.swing.JTextField txtdescipcion;
     private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }

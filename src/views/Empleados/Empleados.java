@@ -24,7 +24,7 @@ public class Empleados extends javax.swing.JInternalFrame {
 
     public Empleados() {
         initComponents();
-        empleados.obtenerTiposEmpleados(cbTipo);
+        empleados.obtenerDatosCombobox(cbTipo,"mostrarListaTipoEmpleado","nombre");
         this.tableEmpleados.setModel(this.empleados.readUnsets());
         this.tablaTodo = this.empleados.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();

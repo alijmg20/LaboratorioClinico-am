@@ -20,6 +20,7 @@ import views.Muestras.DatosMuestras;
 import views.Muestras.Muestras;
 import views.examenes.Categoria;
 import views.examenes.Examenes;
+import views.examenes.Unidad;
 
 public class Index extends javax.swing.JFrame {
 
@@ -29,7 +30,7 @@ public class Index extends javax.swing.JFrame {
     public Index() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-    
+
 //        stopComponents();
 //        Login login = new Login();
 //        Index.desktopPane.add(login);
@@ -57,6 +58,7 @@ public class Index extends javax.swing.JFrame {
         cutMenuItem1 = new javax.swing.JMenuItem();
         helpMenu1 = new javax.swing.JMenu();
         contentMenuItem1 = new javax.swing.JMenuItem();
+        contentMenuItem4 = new javax.swing.JMenuItem();
         aboutMenuItem1 = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -219,6 +221,15 @@ public class Index extends javax.swing.JFrame {
         });
         helpMenu1.add(contentMenuItem1);
 
+        contentMenuItem4.setMnemonic('c');
+        contentMenuItem4.setText("Unidades");
+        contentMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contentMenuItem4ActionPerformed(evt);
+            }
+        });
+        helpMenu1.add(contentMenuItem4);
+
         aboutMenuItem1.setMnemonic('a');
         aboutMenuItem1.setText("Acciones examenes");
         aboutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +322,6 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         ListadoPacientes listadoPacientes = new ListadoPacientes();
         Index.desktopPane.add(listadoPacientes);
@@ -382,14 +392,14 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_contentMenuItem3ActionPerformed
 
     private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
-       
+
         visualizarFacturas facturas = new visualizarFacturas();
         Index.desktopPane.add(facturas);
         facturas.show();
     }//GEN-LAST:event_aboutMenuItem3ActionPerformed
 
     private void aboutMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem2ActionPerformed
-      
+
         DatosMuestras datom = new DatosMuestras();
         Index.desktopPane.add(datom);
         datom.show();
@@ -402,14 +412,14 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_copyMenuItem1ActionPerformed
 
     private void botonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPacientesActionPerformed
-      
+
         Pacientes paciente = new Pacientes();
         Index.desktopPane.add(paciente);
         paciente.show();
     }//GEN-LAST:event_botonPacientesActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       
+
         Citas citas = new Citas();
         Index.desktopPane.add(citas);
         citas.show();
@@ -420,6 +430,12 @@ public class Index extends javax.swing.JFrame {
         Index.desktopPane.add(factura);
         factura.show();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void contentMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem4ActionPerformed
+        Unidad unidad = new Unidad();
+        Index.desktopPane.add(unidad);
+        unidad.show();
+    }//GEN-LAST:event_contentMenuItem4ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -476,6 +492,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenuItem contentMenuItem1;
     private javax.swing.JMenuItem contentMenuItem2;
     private javax.swing.JMenuItem contentMenuItem3;
+    private javax.swing.JMenuItem contentMenuItem4;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem copyMenuItem1;
     private javax.swing.JMenuItem cutMenuItem1;
