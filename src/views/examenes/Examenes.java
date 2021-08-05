@@ -8,6 +8,7 @@ package views.examenes;
 import Models.Examenes.ModelExamenes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,15 +19,16 @@ public class Examenes extends javax.swing.JInternalFrame {
 
     DefaultTableModel tableTodo = new DefaultTableModel();
     ModelExamenes examenes = new ModelExamenes();
-    
+
     public Examenes() {
         initComponents();
-        examenes.obtenerDatosCombobox(this.cbcategoria,"mostrarListaCategoria","nombre" );
+        examenes.obtenerDatosCombobox(this.cbcategoria, "mostrarListaCategoria", "nombre");
+        examenes.obtenerDatosCombobox(cbunidad, "mostrarListaUnidades", "descripcion");
         this.tableExamenes.setModel(examenes.readUnsets());
         this.tableTodo = this.examenes.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
-        this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
+        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 50);
     }
 
     /**
@@ -52,7 +54,7 @@ public class Examenes extends javax.swing.JInternalFrame {
         lbname = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lbname1 = new javax.swing.JLabel();
-        txtName1 = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         lbname2 = new javax.swing.JLabel();
         cbunidad = new javax.swing.JComboBox();
         lbname3 = new javax.swing.JLabel();
@@ -62,7 +64,7 @@ public class Examenes extends javax.swing.JInternalFrame {
         lbname5 = new javax.swing.JLabel();
         lbname4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -82,12 +84,32 @@ public class Examenes extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones"));
 
         btnRegistrar1.setText("Actualizar");
+        btnRegistrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar1ActionPerformed(evt);
+            }
+        });
 
         btnRegistrar2.setText("Eliminar");
+        btnRegistrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar2ActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Ingresa aqui los valores normales");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +158,11 @@ public class Examenes extends javax.swing.JInternalFrame {
 
             }
         ));
+        tableExamenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableExamenesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableExamenes);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -155,9 +182,9 @@ public class Examenes extends javax.swing.JInternalFrame {
         lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname1.setText("Precio");
 
-        txtName1.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName1ActionPerformed(evt);
+                txtPrecioActionPerformed(evt);
             }
         });
 
@@ -169,7 +196,7 @@ public class Examenes extends javax.swing.JInternalFrame {
         lbname3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname3.setText("Categoria");
 
-        cbValorNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecciona una opcion", "con rango", "sin rango" }));
+        cbValorNormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "selecciona una opcion", "rango", "sin rango" }));
 
         txtId.setEditable(false);
         txtId.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +236,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                                 .addGap(28, 28, 28)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbunidad, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -235,7 +262,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbname1)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname2)
@@ -254,6 +281,12 @@ public class Examenes extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Buscar:");
@@ -266,7 +299,7 @@ public class Examenes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -274,7 +307,7 @@ public class Examenes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -337,18 +370,95 @@ public class Examenes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtName1ActionPerformed
-
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+
+        if (validator()) {
+
+            String nombre = this.txtName.getText();
+            double precio = Double.parseDouble(this.txtPrecio.getText());
+            String tipov = this.cbValorNormal.getSelectedItem().toString();
+            String unidad = this.cbunidad.getSelectedItem().toString();
+            String categoria = this.cbcategoria.getSelectedItem().toString();
+
+            this.examenes.create(nombre, precio, tipov, unidad, categoria);
+this.tableExamenes.setModel(examenes.readUnsets());
+        this.tableTodo = this.examenes.read();
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar?");
+        if (decision == 0) {
+            int id = Integer.parseInt(this.txtId.getText());
+            String nombre = this.txtName.getText();
+            double precio = Double.parseDouble(this.txtPrecio.getText());
+            String tipov = this.cbValorNormal.getSelectedItem().toString();
+            String unidad = this.cbunidad.getSelectedItem().toString();
+            String categoria = this.cbcategoria.getSelectedItem().toString();
+            examenes.update(id, nombre, precio, tipov, unidad, categoria);
+            this.tableExamenes.setModel(examenes.readUnsets());
+        this.tableTodo = this.examenes.read();
+        }
+    }//GEN-LAST:event_btnRegistrar1ActionPerformed
+
+    private void tableExamenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableExamenesMouseClicked
+        int filaSeleccionada = this.tableExamenes.rowAtPoint(evt.getPoint());
+        this.txtId.setText(this.tableTodo.getValueAt(filaSeleccionada, 0).toString());
+        this.txtName.setText(this.tableTodo.getValueAt(filaSeleccionada, 1).toString());
+        this.txtPrecio.setText(this.tableTodo.getValueAt(filaSeleccionada, 2).toString());
+        this.cbValorNormal.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 3).toString());
+        this.cbunidad.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 4).toString());
+        this.cbcategoria.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 5).toString());
+
+    }//GEN-LAST:event_tableExamenesMouseClicked
+
+    private void btnRegistrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar2ActionPerformed
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este elemento?");
+        if (decision == 0) {
+            int idexamen = Integer.parseInt(this.txtId.getText());
+            this.examenes.delete(idexamen);
+            this.tableExamenes.setModel(examenes.readUnsets());
+            this.tableTodo = this.examenes.read();
+        }
+
+    }//GEN-LAST:event_btnRegistrar2ActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.txtId.setText("");
+        this.txtName.setText("");
+        this.txtPrecio.setText("");
+        this.cbValorNormal.setSelectedIndex(0);
+        this.cbcategoria.setSelectedIndex(0);
+        this.cbunidad.setSelectedIndex(0);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        this.tableExamenes.setModel(this.examenes.searchUnset(this.txtsearch.getText()));
+    }//GEN-LAST:event_txtsearchKeyReleased
+
+    private boolean validator() {
+
+        return !this.txtName.getText().isEmpty() && !this.txtPrecio.getText().isEmpty()
+                && this.cbValorNormal.getSelectedIndex() > 0 && this.cbcategoria.getSelectedIndex() > 0
+                && this.cbunidad.getSelectedIndex() > 0;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
@@ -366,7 +476,6 @@ public class Examenes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbname;
     private javax.swing.JLabel lbname1;
     private javax.swing.JLabel lbname2;
@@ -376,6 +485,7 @@ public class Examenes extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableExamenes;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }
