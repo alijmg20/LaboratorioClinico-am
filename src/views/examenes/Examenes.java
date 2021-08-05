@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import views.Index;
 
 /**
  *
@@ -376,6 +377,23 @@ public class Examenes extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
+        if (!this.txtId.getText().isEmpty()) {
+            int idexamen = Integer.parseInt(this.txtId.getText());
+            if (this.cbValorNormal.getSelectedIndex() == 1) {
+                ValoresNormalesConRango cr = new ValoresNormalesConRango(idexamen);
+                Index.desktopPane.add(cr);
+                cr.show();
+                
+            } else if (this.cbValorNormal.getSelectedIndex() == 2) {
+                ValoresNormalesSinRango sr = new ValoresNormalesSinRango(idexamen);
+                Index.desktopPane.add(sr);
+                sr.show();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un examen primero", "Accion no realizada", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -389,8 +407,8 @@ public class Examenes extends javax.swing.JInternalFrame {
             String categoria = this.cbcategoria.getSelectedItem().toString();
 
             this.examenes.create(nombre, precio, tipov, unidad, categoria);
-this.tableExamenes.setModel(examenes.readUnsets());
-        this.tableTodo = this.examenes.read();
+            this.tableExamenes.setModel(examenes.readUnsets());
+            this.tableTodo = this.examenes.read();
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -413,7 +431,7 @@ this.tableExamenes.setModel(examenes.readUnsets());
             String categoria = this.cbcategoria.getSelectedItem().toString();
             examenes.update(id, nombre, precio, tipov, unidad, categoria);
             this.tableExamenes.setModel(examenes.readUnsets());
-        this.tableTodo = this.examenes.read();
+            this.tableTodo = this.examenes.read();
         }
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
 
@@ -425,7 +443,7 @@ this.tableExamenes.setModel(examenes.readUnsets());
         this.cbValorNormal.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 3).toString());
         this.cbunidad.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 4).toString());
         this.cbcategoria.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 5).toString());
-
+        this.cbValorNormal.setEditable(false);
     }//GEN-LAST:event_tableExamenesMouseClicked
 
     private void btnRegistrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar2ActionPerformed
