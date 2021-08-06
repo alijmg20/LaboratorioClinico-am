@@ -74,6 +74,16 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        tableValorNormal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableValorNormalMouseClicked(evt);
+            }
+        });
+        tableValorNormal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableValorNormalKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableValorNormal);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,6 +184,12 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Buscar: ");
 
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -206,8 +222,18 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
         });
 
         jButton6.setText("Actualizar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Eliminar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Limpiar");
 
@@ -288,12 +314,60 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
             double desde = Double.parseDouble(this.txtdesde.getText());
             double hasta = Double.parseDouble(this.txthasta.getText());
             String genero = this.rbm.isSelected() ? "Masculino" : "Femenino";
-            
+            this.valorNormal.create(idexamen, desde, hasta, genero);
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (validator()) {
+            int id = Integer.parseInt(this.txtId.getText());
+            double desde = Double.parseDouble(this.txtdesde.getText());
+            double hasta = Double.parseDouble(this.txthasta.getText());
+            String genero = this.rbm.isSelected() ? "Masculino" : "Femenino";
+            this.valorNormal.create(idexamen, desde, hasta, genero);
+            this.valorNormal.update(id,idexamen ,desde, hasta,genero);
+                this.tableValorNormal.setModel(this.valorNormal.read(this.idexamen));
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar este elemento?");
+        if (decision == 0) {
+            int id = Integer.parseInt(this.txtId.getText());
+            this.valorNormal.delete(id, this.idexamen);
+            this.tableValorNormal.setModel(this.valorNormal.read(this.idexamen));
+        }        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void tableValorNormalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableValorNormalKeyReleased
+
+        
+    }//GEN-LAST:event_tableValorNormalKeyReleased
+
+    private void tableValorNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableValorNormalMouseClicked
+                
+        int filaSeleccionada = this.tableValorNormal.rowAtPoint(evt.getPoint());
+        this.txtId.setText(this.tableValorNormal.getValueAt(filaSeleccionada, 0).toString());
+        this.txtdesde.setText(this.tableValorNormal.getValueAt(filaSeleccionada, 1).toString());
+        this.txthasta.setText(this.tableValorNormal.getValueAt(filaSeleccionada, 2).toString());
+        switch(this.tableValorNormal.getValueAt(filaSeleccionada, 3).toString()){
+            case "Masculino":
+                this.rbm.setSelected(true);
+                break;
+            case "Femenino":
+                this.rbf.setSelected(true);
+                break;
+        }
+    }//GEN-LAST:event_tableValorNormalMouseClicked
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        this.tableValorNormal.setModel(this.valorNormal.search(this.idexamen, this.txtsearch.getText()));
+    }//GEN-LAST:event_txtsearchKeyReleased
 
     private boolean validator() {
         return !this.txtdesde.getText().isEmpty() && !this.txthasta.getText().isEmpty()

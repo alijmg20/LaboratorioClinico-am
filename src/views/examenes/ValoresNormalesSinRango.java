@@ -326,7 +326,7 @@ public class ValoresNormalesSinRango extends javax.swing.JInternalFrame {
     private boolean validator() {
 
         return !this.txtValor.getText().isEmpty();
-
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

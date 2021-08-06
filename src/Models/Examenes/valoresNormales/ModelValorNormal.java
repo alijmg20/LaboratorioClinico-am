@@ -40,7 +40,7 @@ public class ModelValorNormal {
             Statement consulta = Index.connection.createStatement();
             ResultSet resultados = consulta.executeQuery(SQL);
             while (resultados.next()) {
-                registros[0] = resultados.getString("idtipovalor");
+                registros[0] = resultados.getString("idvalornormal");
                 registros[1] = resultados.getString("valor_desde");
                 registros[2] = resultados.getString("valor_hasta");
                 registros[3] = resultados.getString("genero");
@@ -54,13 +54,15 @@ public class ModelValorNormal {
         return tabla;
     }
 
-    public void update(int idValorNormal, int idExamen, String valor) {
+    public void update(int idValorNormal,int idExamen, double desde, double hasta, String genero) {
         try {
             String SQL = "CALL editarValorNormal(?,?,?)";
             PreparedStatement consulta = Index.connection.prepareStatement(SQL);
             consulta.setInt(1, idValorNormal);
             consulta.setInt(2, idExamen);
-            consulta.setString(3, valor);
+            consulta.setDouble(3, desde);
+            consulta.setDouble(4, hasta);
+            consulta.setString(5, genero);
             consulta.execute();
 
             JOptionPane.showMessageDialog(null, "Valor Normal actualizado exitosamente", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
@@ -97,7 +99,7 @@ public class ModelValorNormal {
             Statement consulta = Index.connection.createStatement();
             ResultSet resultados = consulta.executeQuery(SQL);
             while (resultados.next()) {
-                registros[0] = resultados.getString("idtipovalor");
+                registros[0] = resultados.getString("idvalornormal");
                 registros[1] = resultados.getString("valor_desde");
                 registros[2] = resultados.getString("valor_hasta");
                 registros[3] = resultados.getString("genero");
