@@ -118,6 +118,7 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
 
         rbm.setBackground(new java.awt.Color(255, 255, 255));
         BgGenero.add(rbm);
+        rbm.setSelected(true);
         rbm.setText("Masculino");
 
         rbf.setBackground(new java.awt.Color(255, 255, 255));
@@ -236,6 +237,11 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
         });
 
         jButton8.setText("Limpiar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -368,6 +374,14 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
     private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
         this.tableValorNormal.setModel(this.valorNormal.search(this.idexamen, this.txtsearch.getText()));
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.txtId.setText("");
+        this.txtdesde.setText("");
+        this.txthasta.setText("");
+        this.rbf.setSelected(false);
+        this.rbm.setSelected(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     private boolean validator() {
         return !this.txtdesde.getText().isEmpty() && !this.txthasta.getText().isEmpty()
