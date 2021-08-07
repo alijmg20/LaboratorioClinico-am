@@ -1,28 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views.Citas;
 
+import Model.Citas.ModelCitas;
+import Models.Pacientes.ModelPacientes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import views.Empleados.Empleados;
 import views.Index;
+import static views.Pacientes.Pacientes.id;
 
-/**
- *
- * @author alijmg
- */
+
 public class Citas extends javax.swing.JInternalFrame {
+    
+    
+    ModelCitas citas = new ModelCitas();
+    
+    DefaultTableModel tablaTodox = new DefaultTableModel();
+    
+    
+    public static int idcita=0;
+    public static int idpaciente =0; 
+    public static int idempleado =3;
+    public static int [] idexamen; 
 
-    /**
-     * Creates new form Citas
-     */
+    
     public Citas() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
-        this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
+        this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-40);
+        this.tableCitas.setModel(this.citas.mostrarInterfaz());
+        this.tablaTodox = this.citas.mostrarTxt();
     }
 
     /**
@@ -37,36 +52,36 @@ public class Citas extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        btnRegistrar1 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         btnRegistrar2 = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnClear1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCitas = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         lbname = new javax.swing.JLabel();
-        rSDateChooser1 = new rojeru_san.rsdate.RSDateChooser();
+        fechaAgendadatxt = new rojeru_san.rsdate.RSDateChooser();
         lbname1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         lbname5 = new javax.swing.JLabel();
         lbname6 = new javax.swing.JLabel();
         lbname10 = new javax.swing.JLabel();
         lbname11 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtName1 = new javax.swing.JTextField();
-        txtName5 = new javax.swing.JTextField();
-        txtName6 = new javax.swing.JTextField();
-        txtName7 = new javax.swing.JTextField();
+        cedulatxt = new javax.swing.JTextField();
         lbname12 = new javax.swing.JLabel();
         lbname13 = new javax.swing.JLabel();
-        txtName8 = new javax.swing.JTextField();
+        nombretxt = new javax.swing.JTextField();
+        fechatxt = new javax.swing.JTextField();
+        correotxt = new javax.swing.JTextField();
+        direcciontxt = new javax.swing.JTextField();
+        telefonotxt = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -83,13 +98,33 @@ public class Citas extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Opciones"));
 
-        btnRegistrar1.setText("Actualizar");
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnRegistrar2.setText("Eliminar");
+        btnRegistrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar2ActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         btnClear1.setText("Pagar cita");
 
@@ -101,7 +136,7 @@ public class Citas extends javax.swing.JInternalFrame {
                 .addGap(2, 2, 2)
                 .addComponent(btnRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegistrar1)
+                .addComponent(btnActualizar)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrar2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -115,7 +150,7 @@ public class Citas extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar1)
+                    .addComponent(btnActualizar)
                     .addComponent(btnRegistrar2)
                     .addComponent(btnRegistrar)
                     .addComponent(btnClear)
@@ -130,7 +165,7 @@ public class Citas extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -138,7 +173,12 @@ public class Citas extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tableCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCitasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableCitas);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos de cita"));
@@ -158,7 +198,12 @@ public class Citas extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Añadir examenes para la cita");
+        jButton3.setText("Examenes para la cita");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -172,7 +217,7 @@ public class Citas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(fechaAgendadatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -187,7 +232,7 @@ public class Citas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(lbname))
-                    .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaAgendadatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname1)
@@ -199,6 +244,12 @@ public class Citas extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -212,7 +263,7 @@ public class Citas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -220,7 +271,7 @@ public class Citas extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -244,53 +295,53 @@ public class Citas extends javax.swing.JInternalFrame {
         lbname11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname11.setText("Telefono: ");
 
-        txtName.setEditable(false);
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        cedulatxt.setEditable(false);
+        cedulatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
-        txtName1.setEditable(false);
-        txtName1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName1ActionPerformed(evt);
-            }
-        });
-
-        txtName5.setEditable(false);
-        txtName5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName5ActionPerformed(evt);
-            }
-        });
-
-        txtName6.setEditable(false);
-        txtName6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName6ActionPerformed(evt);
-            }
-        });
-
-        txtName7.setEditable(false);
-        txtName7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName7ActionPerformed(evt);
+                cedulatxtActionPerformed(evt);
             }
         });
 
         lbname12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbname12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbname12.setText("Sexo:");
+        lbname12.setText("Correo:");
 
         lbname13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbname13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname13.setText("Fecha de nacimiento:");
 
-        txtName8.setEditable(false);
-        txtName8.addActionListener(new java.awt.event.ActionListener() {
+        nombretxt.setEditable(false);
+        nombretxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtName8ActionPerformed(evt);
+                nombretxtActionPerformed(evt);
+            }
+        });
+
+        fechatxt.setEditable(false);
+        fechatxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechatxtActionPerformed(evt);
+            }
+        });
+
+        correotxt.setEditable(false);
+        correotxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correotxtActionPerformed(evt);
+            }
+        });
+
+        direcciontxt.setEditable(false);
+        direcciontxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direcciontxtActionPerformed(evt);
+            }
+        });
+
+        telefonotxt.setEditable(false);
+        telefonotxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonotxtActionPerformed(evt);
             }
         });
 
@@ -300,34 +351,32 @@ public class Citas extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(lbname6)
-                            .addGap(98, 98, 98)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(lbname5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbname10)
-                                    .addComponent(lbname11))
-                                .addGap(83, 83, 83)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtName6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtName5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lbname12)
+                        .addComponent(lbname6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtName7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cedulatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbname5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lbname13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtName8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(fechatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbname12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(correotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbname10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(direcciontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lbname11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(telefonotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,28 +384,28 @@ public class Citas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbname6)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbname5)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cedulatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbname13)
-                    .addComponent(txtName8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                    .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbname5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbname12)
-                    .addComponent(txtName7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(fechatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbname13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbname10)
-                    .addComponent(txtName5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(correotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbname12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbname11)
-                    .addComponent(txtName6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                    .addComponent(direcciontxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbname10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(telefonotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbname11))
+                .addGap(185, 185, 185))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -424,43 +473,222 @@ public class Citas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtName1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         SeleccionarPaciente list = new SeleccionarPaciente();
         Index.desktopPane.add(list);
         list.show();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtName6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName6ActionPerformed
+    private void cedulatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulatxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtName6ActionPerformed
+    }//GEN-LAST:event_cedulatxtActionPerformed
 
-    private void txtName5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName5ActionPerformed
+    private void tableCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCitasMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtName5ActionPerformed
+        int filaSeleccionada = this.tableCitas.rowAtPoint(evt.getPoint());
+        int identifier = Integer.parseInt(this.tableCitas.getValueAt(filaSeleccionada, 0).toString());
+      
+    try {
+            int i = 0;
+            Object[] objeto = null;
+            do {
+                if (identifier == Integer.parseInt(this.tablaTodox.getValueAt(i, 0).toString())) {
 
-    private void txtName7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName7ActionPerformed
+                    objeto = new Object[]{
+                        this.tablaTodox.getValueAt(i, 0),
+                        this.tablaTodox.getValueAt(i, 1),
+                        this.tablaTodox.getValueAt(i, 2),
+                        this.tablaTodox.getValueAt(i, 3),
+                        this.tablaTodox.getValueAt(i, 4),
+                        this.tablaTodox.getValueAt(i, 5),
+                        this.tablaTodox.getValueAt(i, 6),
+                        this.tablaTodox.getValueAt(i, 7),
+                        this.tablaTodox.getValueAt(i, 8),
+                    };
+                }
+                i++;
+            } while (i < this.tablaTodox.getRowCount());
+            
+            
+            idcita = Integer.parseInt(objeto[0].toString()); // para el manejo interno del id
+            idpaciente = Integer.parseInt(objeto[1].toString()); // para el manejo interno del id  
+            
+            cedulatxt.setText(objeto[2].toString());
+            nombretxt.setText(objeto[3].toString());
+            fechatxt.setText(objeto[4].toString());
+            correotxt.setText(objeto[5].toString());
+            direcciontxt.setText(objeto[6].toString());
+            telefonotxt.setText(objeto[7].toString());
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String)  objeto[8].toString());
+            this.fechaAgendadatxt.setDatoFecha(date);
+            
+            
+            
+            
+            
+            
+            
+            
+            /*
+            idcita = Integer.parseInt(this.tablaTodox.getValueAt(filaSeleccionada, 0).toString()); // para el manejo interno del id
+            idpaciente = Integer.parseInt(this.tablaTodox.getValueAt(filaSeleccionada, 1).toString()); // para el manejo interno del id  
+            
+            cedulatxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 2).toString());
+            nombretxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 3).toString());
+            fechatxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 4).toString());
+            correotxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 5).toString());
+            direcciontxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 6).toString());
+            telefonotxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 7).toString());
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) this.tablaTodox.getValueAt(filaSeleccionada, 8));
+            this.fechaAgendadatxt.setDatoFecha(date);
+            
+            */
+            
+            
+ 
+       
+        } catch (Exception ex) {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println("ID PACIENTE: "+idpaciente);
+        System.out.println("ID CITA: "+idcita);
+
+    }//GEN-LAST:event_tableCitasMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtName7ActionPerformed
+        if(idcita != 0){
+            DetallesCita list = new DetallesCita();
+            Index.desktopPane.add(list);
+            list.show();
+        }else {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una cita","", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void txtName8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName8ActionPerformed
+    private void nombretxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombretxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtName8ActionPerformed
+    }//GEN-LAST:event_nombretxtActionPerformed
 
+    private void fechatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechatxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechatxtActionPerformed
 
+    private void correotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correotxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_correotxtActionPerformed
+
+    private void direcciontxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direcciontxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_direcciontxtActionPerformed
+
+    private void telefonotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonotxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefonotxtActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        this.nombretxt.setText("");
+        this.cedulatxt.setText("");
+        this.correotxt.setText("");
+        this.fechatxt.setText("");
+        this.telefonotxt.setText("");
+        this.direcciontxt.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        
+        Date fecha_emision = new Date(); 
+        SimpleDateFormat formateo = new SimpleDateFormat("yyyy/MM/dd"); 
+        idpaciente = SeleccionarPaciente.idpaciente;
+        
+        System.out.println("fecha actual: "+formateo.format(fecha_emision));
+        System.out.println("ID QUE LLEGA : "+idpaciente);
+        
+        if (validator()) {
+    
+            String statusCita = "por realizar"; 
+            Date fechaDate = this.fechaAgendadatxt.getDatoFecha();
+            String fecha_agendada = formateo.format(fechaDate);
+            String fecha_emision1 = formateo.format(fecha_emision); 
+            this.citas.create(fecha_emision1,fecha_agendada,statusCita,idpaciente,idempleado);
+            this.tableCitas.setModel(this.citas.mostrarInterfaz());
+            this.tablaTodox = citas.mostrarTxt();
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+ 
+        Date fecha_emision = new Date(); 
+        SimpleDateFormat formateo = new SimpleDateFormat("yyyy/MM/dd"); 
+    
+        System.out.println("fecha actual: "+formateo.format(fecha_emision));
+        System.out.println("ID PACIENTE QUE LLEGA : "+idpaciente);
+        System.out.println("ID CITA QUE LLEGA : "+idcita);
+        
+        if (validator()) {
+    
+            String statusCita = "por realizar"; 
+            Date fechaDate = this.fechaAgendadatxt.getDatoFecha();
+            String fecha_agendada = formateo.format(fechaDate);
+            String fecha_emision1 = formateo.format(fecha_emision); 
+            this.citas.update(idcita,fecha_emision1,fecha_agendada,statusCita,idpaciente,idempleado);
+            this.tableCitas.setModel(this.citas.mostrarInterfaz());
+            this.tablaTodox = citas.mostrarTxt();
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnRegistrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar2ActionPerformed
+        // TODO add your handling code here:
+        int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar?");
+        if(decision == 0){
+            
+            this.citas.delete(idcita);    
+            this.tableCitas.setModel(this.citas.mostrarInterfaz());
+            this.tablaTodox = citas.mostrarTxt();
+            this.nombretxt.setText("");
+            this.cedulatxt.setText("");
+            this.correotxt.setText("");
+            this.fechatxt.setText("");
+            this.telefonotxt.setText("");
+            this.direcciontxt.setText("");
+    
+        }
+    }//GEN-LAST:event_btnRegistrar2ActionPerformed
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        // TODO add your handling code here:
+        
+         this.tableCitas.setModel(this.citas.buscarCita(this.txtsearch.getText()));
+    }//GEN-LAST:event_txtsearchKeyReleased
+
+    private boolean validator() {
+
+    return !this.nombretxt.getText().isEmpty() && !this.cedulatxt.getText().isEmpty()
+             && !this.correotxt.getText().isEmpty() && !this.fechatxt.getText().isEmpty()
+            && !this.telefonotxt.getText().isEmpty() && !this.direcciontxt.getText().isEmpty()
+            && !this.correotxt.getText().isEmpty() && !this.fechaAgendadatxt.getDatoFecha().toString().isEmpty();
+ 
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnRegistrar1;
     private javax.swing.JButton btnRegistrar2;
+    public static javax.swing.JTextField cedulatxt;
+    public static javax.swing.JTextField correotxt;
+    public static javax.swing.JTextField direcciontxt;
+    private rojeru_san.rsdate.RSDateChooser fechaAgendadatxt;
+    public static javax.swing.JTextField fechatxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -472,8 +700,6 @@ public class Citas extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbname;
     private javax.swing.JLabel lbname1;
     private javax.swing.JLabel lbname10;
@@ -482,12 +708,9 @@ public class Citas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbname13;
     private javax.swing.JLabel lbname5;
     private javax.swing.JLabel lbname6;
-    private rojeru_san.rsdate.RSDateChooser rSDateChooser1;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
-    private javax.swing.JTextField txtName5;
-    private javax.swing.JTextField txtName6;
-    private javax.swing.JTextField txtName7;
-    private javax.swing.JTextField txtName8;
+    public static javax.swing.JTextField nombretxt;
+    private javax.swing.JTable tableCitas;
+    public static javax.swing.JTextField telefonotxt;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }
