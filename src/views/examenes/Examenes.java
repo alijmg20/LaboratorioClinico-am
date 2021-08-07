@@ -437,12 +437,33 @@ public class Examenes extends javax.swing.JInternalFrame {
 
     private void tableExamenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableExamenesMouseClicked
         int filaSeleccionada = this.tableExamenes.rowAtPoint(evt.getPoint());
-        this.txtId.setText(this.tableTodo.getValueAt(filaSeleccionada, 0).toString());
-        this.txtName.setText(this.tableTodo.getValueAt(filaSeleccionada, 1).toString());
-        this.txtPrecio.setText(this.tableTodo.getValueAt(filaSeleccionada, 2).toString());
-        this.cbValorNormal.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 3).toString());
-        this.cbunidad.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 4).toString());
-        this.cbcategoria.setSelectedItem(this.tableTodo.getValueAt(filaSeleccionada, 5).toString());
+        int id = Integer.parseInt(this.tableExamenes.getValueAt(filaSeleccionada, 0).toString());
+        
+        int i = 0;
+            Object[] objeto = null;
+            do {
+                if (id == Integer.parseInt(this.tableTodo.getValueAt(i, 0).toString())) {
+
+                    objeto = new Object[]{
+                        this.tableTodo.getValueAt(i, 0),
+                        this.tableTodo.getValueAt(i, 1),
+                        this.tableTodo.getValueAt(i, 2),
+                        this.tableTodo.getValueAt(i, 3),
+                        this.tableTodo.getValueAt(i, 4),
+                        this.tableTodo.getValueAt(i, 5),
+                    };
+                }
+                i++;
+            } while (i < this.tableTodo.getRowCount());
+        
+        
+        
+        this.txtId.setText(objeto[0].toString());
+        this.txtName.setText(objeto[1].toString());
+        this.txtPrecio.setText(objeto[2].toString());
+        this.cbValorNormal.setSelectedItem(objeto[3].toString());
+        this.cbunidad.setSelectedItem(objeto[4].toString());
+        this.cbcategoria.setSelectedItem(objeto[5].toString());
         this.cbValorNormal.setEditable(false);
     }//GEN-LAST:event_tableExamenesMouseClicked
 

@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,12 +25,12 @@ public class Empleados extends javax.swing.JInternalFrame {
 
     public Empleados() {
         initComponents();
-        empleados.obtenerDatosCombobox(cbTipo,"mostrarListaTipoEmpleado","nombre");
+        empleados.obtenerDatosCombobox(cbTipo, "mostrarListaTipoEmpleado", "nombre");
         this.tableEmpleados.setModel(this.empleados.readUnsets());
         this.tablaTodo = this.empleados.read();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
-        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);    
+        this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);
         txtDireccion.setLineWrap(true);
         txtDireccion.setWrapStyleWord(true);
     }
@@ -477,16 +478,14 @@ public class Empleados extends javax.swing.JInternalFrame {
             String nombreTipo = this.cbTipo.getSelectedItem().toString();
 
             int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar este elemento?");
-            
-            if(decision == 0){
-            this.empleados.update(id,nombre, username, correo,
-                    clave, cedula, sexo, fechaNacimientoString,
-                    telefono, direccion, nombreTipo);   
-            this.tableEmpleados.setModel(this.empleados.readUnsets());
-            this.tablaTodo = empleados.read();
+
+            if (decision == 0) {
+                this.empleados.update(id, nombre, username, correo,
+                        clave, cedula, sexo, fechaNacimientoString,
+                        telefono, direccion, nombreTipo);
+                this.tableEmpleados.setModel(this.empleados.readUnsets());
+                this.tablaTodo = empleados.read();
             }
-            
-            
 
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
@@ -539,14 +538,39 @@ public class Empleados extends javax.swing.JInternalFrame {
     private void tableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmpleadosMouseClicked
 
         int filaSeleccionada = this.tableEmpleados.rowAtPoint(evt.getPoint());
+        int id = Integer.parseInt(this.tableEmpleados.getValueAt(filaSeleccionada, 0).toString());
+
         try {
-            this.txtId.setText(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
-            this.txtnombre.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
-            this.txtusuario.setText(this.tablaTodo.getValueAt(filaSeleccionada, 2).toString());
-            this.txtCorreo.setText(this.tablaTodo.getValueAt(filaSeleccionada, 3).toString());
-            this.txtClave.setText(SecurityKey.Desencriptar(this.tablaTodo.getValueAt(filaSeleccionada, 4).toString()));
-            this.txtcedula.setText(this.tablaTodo.getValueAt(filaSeleccionada, 5).toString());
-            switch (this.tablaTodo.getValueAt(filaSeleccionada, 6).toString()) {
+
+            int i = 0;
+            Object[] objeto = null;
+            do {
+                if (id == Integer.parseInt(this.tablaTodo.getValueAt(i, 0).toString())) {
+
+                    objeto = new Object[]{
+                        this.tablaTodo.getValueAt(i, 0),
+                        this.tablaTodo.getValueAt(i, 1),
+                        this.tablaTodo.getValueAt(i, 2),
+                        this.tablaTodo.getValueAt(i, 3),
+                        this.tablaTodo.getValueAt(i, 4),
+                        this.tablaTodo.getValueAt(i, 5),
+                        this.tablaTodo.getValueAt(i, 6),
+                        this.tablaTodo.getValueAt(i, 7),
+                        this.tablaTodo.getValueAt(i, 8),
+                        this.tablaTodo.getValueAt(i, 9),
+                        this.tablaTodo.getValueAt(i, 10)
+                    };
+                }
+                i++;
+            } while (i < this.tablaTodo.getRowCount());
+
+            this.txtId.setText(objeto[0].toString());
+            this.txtnombre.setText(objeto[1].toString());
+            this.txtusuario.setText(objeto[2].toString());
+            this.txtCorreo.setText(objeto[3].toString());
+            this.txtClave.setText(SecurityKey.Desencriptar(objeto[4].toString()));
+            this.txtcedula.setText(objeto[5].toString());
+            switch (objeto[6].toString()) {
                 case "H":
                     this.rbH.setSelected(true);
                     break;
@@ -555,11 +579,11 @@ public class Empleados extends javax.swing.JInternalFrame {
                     break;
             }
 
-            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) this.tablaTodo.getValueAt(filaSeleccionada, 7));
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) objeto[7]);
             this.rsfecha_nacimiento.setDatoFecha(date);
-            this.txtTelefono.setText(this.tablaTodo.getValueAt(filaSeleccionada, 8).toString());
-            this.txtDireccion.setText(this.tablaTodo.getValueAt(filaSeleccionada, 9).toString());
-            this.cbTipo.setSelectedItem(this.tablaTodo.getValueAt(filaSeleccionada, 10).toString());
+            this.txtTelefono.setText(objeto[8].toString());
+            this.txtDireccion.setText(objeto[9].toString());
+            this.cbTipo.setSelectedItem(objeto[10].toString());
         } catch (ParseException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -575,9 +599,9 @@ public class Empleados extends javax.swing.JInternalFrame {
 
     private void btnRegistrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar2ActionPerformed
         int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar?");
-        if(decision == 0){
+        if (decision == 0) {
             int idtipo = Integer.parseInt(this.txtId.getText());
-            this.empleados.delete(idtipo);    
+            this.empleados.delete(idtipo);
             this.tableEmpleados.setModel(this.empleados.readUnsets());
             this.tablaTodo = empleados.read();
         }
@@ -597,9 +621,9 @@ public class Empleados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        
+
         this.tableEmpleados.setModel(this.empleados.searchUnset(this.txtSearch.getText()));
-        
+
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed

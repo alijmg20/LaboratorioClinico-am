@@ -356,7 +356,6 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tableValorNormalKeyReleased
 
     private void tableValorNormalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableValorNormalMouseClicked
-                
         int filaSeleccionada = this.tableValorNormal.rowAtPoint(evt.getPoint());
         this.txtId.setText(this.tableValorNormal.getValueAt(filaSeleccionada, 0).toString());
         this.txtdesde.setText(this.tableValorNormal.getValueAt(filaSeleccionada, 1).toString());

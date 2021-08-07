@@ -14,7 +14,7 @@ public class Categoria extends javax.swing.JInternalFrame {
 
     ModelCategoriasExamenes categoria = new ModelCategoriasExamenes();
     DefaultTableModel tablaTodo = new DefaultTableModel();
-    public static int id = 0;
+    public int id = 0;
 
     public Categoria() {
         initComponents();
@@ -300,15 +300,30 @@ public class Categoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nombretxtActionPerformed
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked
-        // TODO add your handling code here:
 
-       // int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
         int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
+        int identifier = Integer.parseInt(this.tableCategoria.getValueAt(filaSeleccionada, 0).toString());
+        
+        
         try {
+            int i = 0;
+            Object[] objeto = null;
+            do {
+                if (identifier == Integer.parseInt(this.tablaTodo.getValueAt(i, 0).toString())) {
 
-            id = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
-            this.nombretxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
-            this.descripciontxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 2).toString());
+                    objeto = new Object[]{
+                        this.tablaTodo.getValueAt(i, 0),
+                        this.tablaTodo.getValueAt(i, 1),
+                        this.tablaTodo.getValueAt(i, 2),
+                    };
+                }
+                i++;
+            } while (i < this.tablaTodo.getRowCount());
+            
+
+            this.id = Integer.parseInt(objeto[0].toString());
+            this.nombretxt.setText(objeto[1].toString());
+            this.descripciontxt.setText(objeto[2].toString());
 
         } catch (Exception ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);

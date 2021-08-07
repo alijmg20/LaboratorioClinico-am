@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/Models/Examenes/ModelExamenes.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/Models/Examenes/valoresNormales/ModelTipoValor.java</file>
             <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/examenes/ValoresNormalesConRango.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/Index.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/Models/Examenes/valoresNormales/ModelValorNormal.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/Empleados/Empleados.java</file>
+            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/Pacientes/Pacientes.java</file>
             <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/examenes/Examenes.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/Models/Empleados/ModelTipoEmpleados.java</file>
-            <file>file:/C:/Users/alijm/Documents/uni/7mo/bdd2/proyecto/Proyecto/src/views/examenes/ValoresNormalesSinRango.java</file>
         </group>
     </open-files>
 </project-private>

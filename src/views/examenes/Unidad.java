@@ -15,7 +15,7 @@ public class Unidad extends javax.swing.JInternalFrame {
 
     ModelUnidadesExamenes unidades = new ModelUnidadesExamenes();
     DefaultTableModel tablaTodo = new DefaultTableModel();
-    public static int id = 0;
+    public int id = 0;
 
     public Unidad() {
         initComponents();
@@ -265,12 +265,25 @@ public class Unidad extends javax.swing.JInternalFrame {
     private void tableUnidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUnidadesMouseClicked
         // TODO add your handling code here:
 
-       // int filaSeleccionada = this.tableCategoria.rowAtPoint(evt.getPoint());
+       
         int filaSeleccionada = this.tableUnidades.rowAtPoint(evt.getPoint());
+        int identifier = Integer.parseInt(this.tableUnidades.getValueAt(filaSeleccionada, 0).toString());
         try {
+            int i = 0;
+            Object[] objeto = null;
+            do {
+                if (identifier == Integer.parseInt(this.tablaTodo.getValueAt(i, 0).toString())) {
 
-            id = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
-            this.txtdescipcion.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
+                    objeto = new Object[]{
+                        this.tablaTodo.getValueAt(i, 0),
+                        this.tablaTodo.getValueAt(i, 1),
+                    };
+                }
+                i++;
+            } while (i < this.tablaTodo.getRowCount());
+            
+            this.id = Integer.parseInt(objeto[0].toString());
+            this.txtdescipcion.setText(objeto[1].toString());
 
         } catch (Exception ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);

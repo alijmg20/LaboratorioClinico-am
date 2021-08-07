@@ -69,6 +69,11 @@ public class ListadoEmpleados extends javax.swing.JInternalFrame {
 
             }
         ));
+        tablaEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEmpleadosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaEmpleados);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,6 +154,10 @@ public class ListadoEmpleados extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         buscarPersona(buscartxt.getText());
     }//GEN-LAST:event_buscartxtKeyReleased
+
+    private void tablaEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpleadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaEmpleadosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

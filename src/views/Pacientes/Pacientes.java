@@ -18,7 +18,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
     
     ModelPacientes pacientes = new ModelPacientes();
     DefaultTableModel tablaTodo = new DefaultTableModel();
-    public static int id=0;
+    public int id=0;
 
     public Pacientes() {
         initComponents();
@@ -66,7 +66,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
         fechanacimientotxt = new rojeru_san.rsdate.RSDateChooser();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -323,6 +323,12 @@ public class Pacientes extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Buscar:");
@@ -335,7 +341,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -343,7 +349,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -462,12 +468,34 @@ public class Pacientes extends javax.swing.JInternalFrame {
     private void tablePacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePacientesMouseClicked
 
         int filaSeleccionada = this.tablePacientes.rowAtPoint(evt.getPoint());
+        int identifier = Integer.parseInt(this.tablePacientes.getValueAt(filaSeleccionada, 0).toString());
+        
         try {
+            int i = 0;
+            Object[] objeto = null;
+            do {
+                if (identifier == Integer.parseInt(this.tablaTodo.getValueAt(i, 0).toString())) {
+
+                    objeto = new Object[]{
+                        this.tablaTodo.getValueAt(i, 0),
+                        this.tablaTodo.getValueAt(i, 1),
+                        this.tablaTodo.getValueAt(i, 2),
+                        this.tablaTodo.getValueAt(i, 3),
+                        this.tablaTodo.getValueAt(i, 4),
+                        this.tablaTodo.getValueAt(i, 5),
+                        this.tablaTodo.getValueAt(i, 6),
+                        this.tablaTodo.getValueAt(i, 7),
+                    };
+                }
+                i++;
+            } while (i < this.tablaTodo.getRowCount());
             
-            id = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString()); // para el manejo interno del id 
-            this.nombretxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 1).toString());
-            this.cedulatxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 2).toString());
-            switch (this.tablaTodo.getValueAt(filaSeleccionada, 3).toString()) {
+            
+            
+            this.id = Integer.parseInt(objeto[0].toString()); // para el manejo interno del id 
+            this.nombretxt.setText(objeto[1].toString());
+            this.cedulatxt.setText(objeto[2].toString());
+            switch (objeto[3].toString()) {
                 case "H":
                     this.rbH.setSelected(true);
                     break;
@@ -475,15 +503,13 @@ public class Pacientes extends javax.swing.JInternalFrame {
                     this.rbM.setSelected(true);
                     break;
             }
-            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) this.tablaTodo.getValueAt(filaSeleccionada, 4));
+            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) objeto[4]);
             this.fechanacimientotxt.setDatoFecha(date);
-            this.correotxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 5).toString());
-            this.telefonotxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 6).toString());
-            this.direcciontxt.setText(this.tablaTodo.getValueAt(filaSeleccionada, 7).toString());
+            this.correotxt.setText(objeto[5].toString());
+            this.telefonotxt.setText(objeto[6].toString());
+            this.direcciontxt.setText(objeto[7].toString());
 
-        } catch (ParseException ex) {
-            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
+        } catch (ParseException | NumberFormatException ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -542,6 +568,12 @@ public class Pacientes extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btneliminarActionPerformed
 
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        
+//        this.tablePacientes.setModel(this.pacientes.search(this.txtsearch.getText()));
+        
+    }//GEN-LAST:event_txtsearchKeyReleased
+
     
     private boolean validator() {
 
@@ -576,11 +608,11 @@ public class Pacientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JRadioButton rbH;
     private javax.swing.JRadioButton rbM;
     private javax.swing.JTable tablePacientes;
     private javax.swing.JTextField telefonotxt;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }
