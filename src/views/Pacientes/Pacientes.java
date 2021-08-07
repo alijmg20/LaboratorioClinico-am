@@ -570,7 +570,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
 
     private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
         
-//        this.tablePacientes.setModel(this.pacientes.search(this.txtsearch.getText()));
+        this.tablePacientes.setModel(this.pacientes.buscarPaciente(this.txtsearch.getText()));
         
     }//GEN-LAST:event_txtsearchKeyReleased
 
