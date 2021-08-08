@@ -301,9 +301,11 @@ public class TipoEmpleado extends javax.swing.JInternalFrame {
 
     private void btnRegistrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar2ActionPerformed
         int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas eliminar?");
-        if(decision == 0){
-            int idtipo = Integer.parseInt(this.txtId.getText());
+        int idtipo = Integer.parseInt(this.txtId.getText());
+        if(decision == 0 && idtipo!=1){
             this.tipoEmpleado.delete(idtipo);
+        }else if(idtipo ==1){
+            JOptionPane.showMessageDialog(null, "¡No puedes eliminar el tipo administrador!","Accion no realizada",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnRegistrar2ActionPerformed
 

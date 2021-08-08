@@ -5,7 +5,7 @@
  */
 package views.Citas;
 
-import Model.Citas.ModelCitas;
+import Models.Citas.ModelCitas;
 import Models.Pacientes.ModelPacientes;
 import java.awt.Dimension;
 import java.awt.Toolkit;

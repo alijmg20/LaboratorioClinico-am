@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views.Muestras;
 
-/**
- *
- * @author alijmg
- */
+import Models.Citas.ModelCitas;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import views.Index;
+
 public class Muestras extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Muestras
-     */
+    ModelCitas citas = new ModelCitas();
+    int idCita;
     public Muestras() {
         initComponents();
+        this.idCita = 0;
+        this.tableCitas.setModel(citas.mostrarInterfaz());
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension ventana = this.getSize();
+        this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-40);
+        
     }
 
     /**
@@ -30,9 +33,9 @@ public class Muestras extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCitas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -48,7 +51,7 @@ public class Muestras extends javax.swing.JInternalFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Analisis de Examen ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -56,10 +59,21 @@ public class Muestras extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tableCitas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCitasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableCitas);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -73,7 +87,7 @@ public class Muestras extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(141, 141, 141))
         );
         jPanel4Layout.setVerticalGroup(
@@ -81,12 +95,17 @@ public class Muestras extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
 
         jButton1.setText("Ir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selecciona un examen para ver sus detalles");
 
@@ -138,6 +157,35 @@ public class Muestras extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCitasMouseClicked
+
+        int filaSeleccionada = this.tableCitas.rowAtPoint(evt.getPoint());
+        this.idCita = Integer.parseInt(this.tableCitas.getValueAt(filaSeleccionada, 0).toString());
+        
+        
+    }//GEN-LAST:event_tableCitasMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if(this.idCita > 0){
+            
+            DatosMuestras datosMuestras = new DatosMuestras(idCita);
+            Index.desktopPane.add(datosMuestras);
+            datosMuestras.show();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una cita","Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        
+        this.tableCitas.setModel(this.citas.buscarCita(this.txtsearch.getText()));
+        
+    }//GEN-LAST:event_txtsearchKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -147,7 +195,7 @@ public class Muestras extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tableCitas;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }

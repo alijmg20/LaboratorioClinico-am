@@ -73,8 +73,8 @@ public class ModelDetalleCita {
     }   
         
     public DefaultTableModel mostrarInterfaz(int idcita) {
-        String[] titulos = {" ID ", " Nombre ", " Precio ", " Categoria "};
-        String[] registros = new String[4];
+        String[] titulos = {" ID ", " Nombre ", " Precio ", " Categoria ", " Estado "};
+        String[] registros = new String[5];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);
         
@@ -89,6 +89,7 @@ public class ModelDetalleCita {
                 registros[1] = resultados.getString("nombreexamen");
                 registros[2] = resultados.getString("precioexamen");
                 registros[3] = resultados.getString("categoriaexamen");
+                registros[4] = resultados.getString("estado");
                 tabla.addRow(registros);
             }
 

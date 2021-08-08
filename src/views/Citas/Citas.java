@@ -1,7 +1,7 @@
 
 package views.Citas;
 
-import Model.Citas.ModelCitas;
+import Models.Citas.ModelCitas;
 import Models.Pacientes.ModelPacientes;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -558,12 +558,12 @@ public class Citas extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(idcita != 0){
+        if(idcita > 0){
             DetallesCita list = new DetallesCita();
             Index.desktopPane.add(list);
             list.show();
         }else {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar una cita","", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una cita","Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

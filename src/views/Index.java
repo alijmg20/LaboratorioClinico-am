@@ -1,5 +1,6 @@
 package views;
 
+import Class.Usuario;
 import Controllers.ConnectionDB;
 import java.awt.Component;
 import java.awt.Image;
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import views.Empleados.Empleados;
 import views.Empleados.ListadoEmpleados;
 import views.Empleados.TipoEmpleado;
@@ -18,6 +20,7 @@ import views.Facturas.Facturas;
 import views.Facturas.visualizarFacturas;
 import views.Muestras.DatosMuestras;
 import views.Muestras.Muestras;
+import views.admin.Login;
 import views.examenes.Categoria;
 import views.examenes.Examenes;
 import views.examenes.Unidad;
@@ -26,15 +29,16 @@ public class Index extends javax.swing.JFrame {
 
     public static ConnectionDB con = new ConnectionDB();
     public static Connection connection = con.conectar();
+    public static Usuario user = null;
 
     public Index() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
 
-//        stopComponents();
-//        Login login = new Login();
-//        Index.desktopPane.add(login);
-//        login.show();
+        stopComponents();
+        Login login = new Login();
+        Index.desktopPane.add(login);
+        login.show();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,111 +46,110 @@ public class Index extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        botonPacientes = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnExamenes = new javax.swing.JButton();
+        btnEmpleados = new javax.swing.JButton();
+        btnPacientes = new javax.swing.JButton();
+        btnFacturas = new javax.swing.JButton();
+        btnCitas = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        copyMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem1 = new javax.swing.JMenuItem();
-        cutMenuItem1 = new javax.swing.JMenuItem();
-        helpMenu1 = new javax.swing.JMenu();
-        contentMenuItem1 = new javax.swing.JMenuItem();
-        contentMenuItem4 = new javax.swing.JMenuItem();
-        aboutMenuItem1 = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
-        helpMenu2 = new javax.swing.JMenu();
-        contentMenuItem2 = new javax.swing.JMenuItem();
-        aboutMenuItem2 = new javax.swing.JMenuItem();
-        helpMenu3 = new javax.swing.JMenu();
-        contentMenuItem3 = new javax.swing.JMenuItem();
-        aboutMenuItem3 = new javax.swing.JMenuItem();
+        filePacientes = new javax.swing.JMenu();
+        acPacientes = new javax.swing.JMenuItem();
+        aclistPacientes = new javax.swing.JMenuItem();
+        fileEmpleados = new javax.swing.JMenu();
+        acTipEmpleados = new javax.swing.JMenuItem();
+        acEmpleados = new javax.swing.JMenuItem();
+        aclistEmpleados = new javax.swing.JMenuItem();
+        fileExamSistema = new javax.swing.JMenu();
+        acCategorias = new javax.swing.JMenuItem();
+        acUnidades = new javax.swing.JMenuItem();
+        acExamSistema = new javax.swing.JMenuItem();
+        fileCitas = new javax.swing.JMenu();
+        acCitas = new javax.swing.JMenuItem();
+        aclistCitas = new javax.swing.JMenuItem();
+        fileExamPacientes = new javax.swing.JMenu();
+        acAnalisis = new javax.swing.JMenuItem();
+        fileFacturas = new javax.swing.JMenu();
+        acFacturas = new javax.swing.JMenuItem();
+        aclistFacturas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         desktopPane.setToolTipText("");
 
-        jButton1.setBackground(new java.awt.Color(180, 185, 210));
-        jButton1.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Examenes.png"))); // NOI18N
-        jButton1.setText("Examenes");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setMaximumSize(new java.awt.Dimension(129, 61));
-        jButton1.setMinimumSize(new java.awt.Dimension(129, 61));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExamenes.setBackground(new java.awt.Color(180, 185, 210));
+        btnExamenes.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnExamenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Examenes.png"))); // NOI18N
+        btnExamenes.setText("Examenes");
+        btnExamenes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExamenes.setMaximumSize(new java.awt.Dimension(129, 61));
+        btnExamenes.setMinimumSize(new java.awt.Dimension(129, 61));
+        btnExamenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExamenesActionPerformed(evt);
             }
         });
-        desktopPane.add(jButton1);
-        jButton1.setBounds(150, 520, 180, 60);
+        desktopPane.add(btnExamenes);
+        btnExamenes.setBounds(150, 520, 180, 60);
 
-        jButton2.setBackground(new java.awt.Color(180, 185, 210));
-        jButton2.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/empleado.png"))); // NOI18N
-        jButton2.setText("Empleados");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setMaximumSize(new java.awt.Dimension(129, 61));
-        jButton2.setMinimumSize(new java.awt.Dimension(129, 61));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEmpleados.setBackground(new java.awt.Color(180, 185, 210));
+        btnEmpleados.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/empleado.png"))); // NOI18N
+        btnEmpleados.setText("Empleados");
+        btnEmpleados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEmpleados.setMaximumSize(new java.awt.Dimension(129, 61));
+        btnEmpleados.setMinimumSize(new java.awt.Dimension(129, 61));
+        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEmpleadosActionPerformed(evt);
             }
         });
-        desktopPane.add(jButton2);
-        jButton2.setBounds(150, 400, 180, 60);
+        desktopPane.add(btnEmpleados);
+        btnEmpleados.setBounds(150, 400, 180, 60);
 
-        botonPacientes.setBackground(new java.awt.Color(180, 185, 210));
-        botonPacientes.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        botonPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/paciente.png"))); // NOI18N
-        botonPacientes.setText("Pacientes");
-        botonPacientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonPacientes.addActionListener(new java.awt.event.ActionListener() {
+        btnPacientes.setBackground(new java.awt.Color(180, 185, 210));
+        btnPacientes.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/paciente.png"))); // NOI18N
+        btnPacientes.setText("Pacientes");
+        btnPacientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonPacientesActionPerformed(evt);
+                btnPacientesActionPerformed(evt);
             }
         });
-        desktopPane.add(botonPacientes);
-        botonPacientes.setBounds(150, 170, 180, 60);
+        desktopPane.add(btnPacientes);
+        btnPacientes.setBounds(150, 170, 180, 60);
 
-        jButton4.setBackground(new java.awt.Color(180, 185, 210));
-        jButton4.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Facturas.png"))); // NOI18N
-        jButton4.setText("Facturas");
-        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.setMaximumSize(new java.awt.Dimension(129, 61));
-        jButton4.setMinimumSize(new java.awt.Dimension(129, 61));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnFacturas.setBackground(new java.awt.Color(180, 185, 210));
+        btnFacturas.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Facturas.png"))); // NOI18N
+        btnFacturas.setText("Facturas");
+        btnFacturas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFacturas.setMaximumSize(new java.awt.Dimension(129, 61));
+        btnFacturas.setMinimumSize(new java.awt.Dimension(129, 61));
+        btnFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnFacturasActionPerformed(evt);
             }
         });
-        desktopPane.add(jButton4);
-        jButton4.setBounds(150, 620, 180, 60);
+        desktopPane.add(btnFacturas);
+        btnFacturas.setBounds(150, 620, 180, 60);
 
-        jButton5.setBackground(new java.awt.Color(180, 185, 210));
-        jButton5.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Citas.png"))); // NOI18N
-        jButton5.setText("Citas");
-        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton5.setMaximumSize(new java.awt.Dimension(129, 61));
-        jButton5.setMinimumSize(new java.awt.Dimension(129, 61));
-        jButton5.setPreferredSize(new java.awt.Dimension(129, 61));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnCitas.setBackground(new java.awt.Color(180, 185, 210));
+        btnCitas.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Citas.png"))); // NOI18N
+        btnCitas.setText("Citas");
+        btnCitas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCitas.setMaximumSize(new java.awt.Dimension(129, 61));
+        btnCitas.setMinimumSize(new java.awt.Dimension(129, 61));
+        btnCitas.setPreferredSize(new java.awt.Dimension(129, 61));
+        btnCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnCitasActionPerformed(evt);
             }
         });
-        desktopPane.add(jButton5);
-        jButton5.setBounds(150, 290, 180, 60);
+        desktopPane.add(btnCitas);
+        btnCitas.setBounds(150, 290, 180, 60);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
@@ -154,156 +157,147 @@ public class Index extends javax.swing.JFrame {
         desktopPane.add(Fondo);
         Fondo.setBounds(0, 0, 1600, 1067);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("Pacientes");
+        filePacientes.setMnemonic('f');
+        filePacientes.setText("Pacientes");
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Acciones de pacientes");
-        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        acPacientes.setMnemonic('o');
+        acPacientes.setText("Acciones de pacientes");
+        acPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openMenuItemActionPerformed(evt);
+                acPacientesActionPerformed(evt);
             }
         });
-        fileMenu.add(openMenuItem);
+        filePacientes.add(acPacientes);
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Listar Pacientes");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        aclistPacientes.setMnemonic('s');
+        aclistPacientes.setText("Listar Pacientes");
+        aclistPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
+                aclistPacientesActionPerformed(evt);
             }
         });
-        fileMenu.add(saveMenuItem);
+        filePacientes.add(aclistPacientes);
 
-        menuBar.add(fileMenu);
+        menuBar.add(filePacientes);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Empleados");
+        fileEmpleados.setMnemonic('e');
+        fileEmpleados.setText("Empleados");
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Acciones de tipo Empleado");
-        copyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        acTipEmpleados.setMnemonic('y');
+        acTipEmpleados.setText("Acciones de tipo Empleado");
+        acTipEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyMenuItemActionPerformed(evt);
+                acTipEmpleadosActionPerformed(evt);
             }
         });
-        editMenu.add(copyMenuItem);
+        fileEmpleados.add(acTipEmpleados);
 
-        copyMenuItem1.setMnemonic('y');
-        copyMenuItem1.setText("Acciones de empleados");
-        copyMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        acEmpleados.setMnemonic('y');
+        acEmpleados.setText("Acciones de empleados");
+        acEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyMenuItem1ActionPerformed(evt);
+                acEmpleadosActionPerformed(evt);
             }
         });
-        editMenu.add(copyMenuItem1);
+        fileEmpleados.add(acEmpleados);
 
-        cutMenuItem1.setMnemonic('t');
-        cutMenuItem1.setText("Listar Empleados");
-        cutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        aclistEmpleados.setMnemonic('t');
+        aclistEmpleados.setText("Listar Empleados");
+        aclistEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItem1ActionPerformed(evt);
+                aclistEmpleadosActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem1);
+        fileEmpleados.add(aclistEmpleados);
 
-        menuBar.add(editMenu);
+        menuBar.add(fileEmpleados);
 
-        helpMenu1.setMnemonic('h');
-        helpMenu1.setText("Examenes del sistema");
+        fileExamSistema.setMnemonic('h');
+        fileExamSistema.setText("Examenes del sistema");
 
-        contentMenuItem1.setMnemonic('c');
-        contentMenuItem1.setText("Categorias");
-        contentMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        acCategorias.setMnemonic('c');
+        acCategorias.setText("Categorias");
+        acCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItem1ActionPerformed(evt);
+                acCategoriasActionPerformed(evt);
             }
         });
-        helpMenu1.add(contentMenuItem1);
+        fileExamSistema.add(acCategorias);
 
-        contentMenuItem4.setMnemonic('c');
-        contentMenuItem4.setText("Unidades");
-        contentMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        acUnidades.setMnemonic('c');
+        acUnidades.setText("Unidades");
+        acUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItem4ActionPerformed(evt);
+                acUnidadesActionPerformed(evt);
             }
         });
-        helpMenu1.add(contentMenuItem4);
+        fileExamSistema.add(acUnidades);
 
-        aboutMenuItem1.setMnemonic('a');
-        aboutMenuItem1.setText("Acciones examenes");
-        aboutMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        acExamSistema.setMnemonic('a');
+        acExamSistema.setText("Acciones examenes");
+        acExamSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItem1ActionPerformed(evt);
+                acExamSistemaActionPerformed(evt);
             }
         });
-        helpMenu1.add(aboutMenuItem1);
+        fileExamSistema.add(acExamSistema);
 
-        menuBar.add(helpMenu1);
+        menuBar.add(fileExamSistema);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Citas");
+        fileCitas.setMnemonic('h');
+        fileCitas.setText("Citas");
 
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Acciones de citas");
-        contentMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        acCitas.setMnemonic('c');
+        acCitas.setText("Acciones de citas");
+        acCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItemActionPerformed(evt);
+                acCitasActionPerformed(evt);
             }
         });
-        helpMenu.add(contentMenuItem);
+        fileCitas.add(acCitas);
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("Ver lista de citas");
-        helpMenu.add(aboutMenuItem);
+        aclistCitas.setMnemonic('a');
+        aclistCitas.setText("Ver lista de citas");
+        fileCitas.add(aclistCitas);
 
-        menuBar.add(helpMenu);
+        menuBar.add(fileCitas);
 
-        helpMenu2.setMnemonic('h');
-        helpMenu2.setText("Examenes de pacientes");
+        fileExamPacientes.setMnemonic('h');
+        fileExamPacientes.setText("Examenes de pacientes");
 
-        contentMenuItem2.setMnemonic('c');
-        contentMenuItem2.setText("Analizar muestras de examenes");
-        contentMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        acAnalisis.setMnemonic('c');
+        acAnalisis.setText("Analizar muestras de examenes");
+        acAnalisis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItem2ActionPerformed(evt);
+                acAnalisisActionPerformed(evt);
             }
         });
-        helpMenu2.add(contentMenuItem2);
+        fileExamPacientes.add(acAnalisis);
 
-        aboutMenuItem2.setMnemonic('a');
-        aboutMenuItem2.setText("Resultados de muestras");
-        aboutMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuBar.add(fileExamPacientes);
+
+        fileFacturas.setMnemonic('h');
+        fileFacturas.setText("Facturas");
+
+        acFacturas.setMnemonic('c');
+        acFacturas.setText("Acciones de facturas");
+        acFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItem2ActionPerformed(evt);
+                acFacturasActionPerformed(evt);
             }
         });
-        helpMenu2.add(aboutMenuItem2);
+        fileFacturas.add(acFacturas);
 
-        menuBar.add(helpMenu2);
-
-        helpMenu3.setMnemonic('h');
-        helpMenu3.setText("Facturas");
-
-        contentMenuItem3.setMnemonic('c');
-        contentMenuItem3.setText("Acciones de facturas");
-        contentMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        aclistFacturas.setMnemonic('a');
+        aclistFacturas.setText("Ver lista de facturas");
+        aclistFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contentMenuItem3ActionPerformed(evt);
+                aclistFacturasActionPerformed(evt);
             }
         });
-        helpMenu3.add(contentMenuItem3);
+        fileFacturas.add(aclistFacturas);
 
-        aboutMenuItem3.setMnemonic('a');
-        aboutMenuItem3.setText("Ver lista de facturas");
-        aboutMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItem3ActionPerformed(evt);
-            }
-        });
-        helpMenu3.add(aboutMenuItem3);
-
-        menuBar.add(helpMenu3);
+        menuBar.add(fileFacturas);
 
         setJMenuBar(menuBar);
 
@@ -322,120 +316,123 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+    private void aclistPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistPacientesActionPerformed
         ListadoPacientes listadoPacientes = new ListadoPacientes();
         Index.desktopPane.add(listadoPacientes);
         listadoPacientes.show();
-    }//GEN-LAST:event_saveMenuItemActionPerformed
+    }//GEN-LAST:event_aclistPacientesActionPerformed
 
-    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
+    private void acPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acPacientesActionPerformed
         Pacientes paciente = new Pacientes();
         Index.desktopPane.add(paciente);
         paciente.show();
-    }//GEN-LAST:event_openMenuItemActionPerformed
+    }//GEN-LAST:event_acPacientesActionPerformed
 
-    private void copyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItemActionPerformed
-        TipoEmpleado tipoEmpleado = new TipoEmpleado();
-        Index.desktopPane.add(tipoEmpleado);
-        tipoEmpleado.show();
-    }//GEN-LAST:event_copyMenuItemActionPerformed
+    private void acTipEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acTipEmpleadosActionPerformed
+        if (user != null && user.getIdEmpleado() == 1) {
+            TipoEmpleado tipoEmpleado = new TipoEmpleado();
+            Index.desktopPane.add(tipoEmpleado);
+            tipoEmpleado.show();
+        } else {
+            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
 
-    private void cutMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItem1ActionPerformed
+
+    }//GEN-LAST:event_acTipEmpleadosActionPerformed
+
+    private void aclistEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistEmpleadosActionPerformed
         ListadoEmpleados listado = new ListadoEmpleados();
         Index.desktopPane.add(listado);
         listado.show();
-    }//GEN-LAST:event_cutMenuItem1ActionPerformed
+    }//GEN-LAST:event_aclistEmpleadosActionPerformed
 
-    private void contentMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem1ActionPerformed
+    private void acCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCategoriasActionPerformed
         Categoria categorias = new Categoria();
         Index.desktopPane.add(categorias);
         categorias.show();
-    }//GEN-LAST:event_contentMenuItem1ActionPerformed
+    }//GEN-LAST:event_acCategoriasActionPerformed
 
-    private void aboutMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem1ActionPerformed
+    private void acExamSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acExamSistemaActionPerformed
         Examenes examenes = new Examenes();
         Index.desktopPane.add(examenes);
         examenes.show();
-    }//GEN-LAST:event_aboutMenuItem1ActionPerformed
+    }//GEN-LAST:event_acExamSistemaActionPerformed
 
-    private void contentMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItemActionPerformed
+    private void acCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCitasActionPerformed
         Citas citas = new Citas();
         Index.desktopPane.add(citas);
         citas.show();
-    }//GEN-LAST:event_contentMenuItemActionPerformed
+    }//GEN-LAST:event_acCitasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnExamenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamenesActionPerformed
         Examenes examenes = new Examenes();
         Index.desktopPane.add(examenes);
         examenes.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnExamenesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
         Empleados empleados = new Empleados();
         Index.desktopPane.add(empleados);
         empleados.show();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEmpleadosActionPerformed
 
-    private void contentMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        Muestras muestra = new Muestras();
-        Index.desktopPane.add(muestra);
-        muestra.show();
-    }//GEN-LAST:event_contentMenuItem2ActionPerformed
+    private void acAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acAnalisisActionPerformed
+        if (Index.user.getIdTipoEmpleado() == 1 || Index.user.getIdTipoEmpleado() == 2) {
+            Muestras muestra = new Muestras();
+            Index.desktopPane.add(muestra);
+            muestra.show();
+        }else{
+            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_acAnalisisActionPerformed
 
-    private void contentMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem3ActionPerformed
+    private void acFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acFacturasActionPerformed
 
         Facturas factura = new Facturas();
         Index.desktopPane.add(factura);
         factura.show();
 
-    }//GEN-LAST:event_contentMenuItem3ActionPerformed
+    }//GEN-LAST:event_acFacturasActionPerformed
 
-    private void aboutMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem3ActionPerformed
+    private void aclistFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistFacturasActionPerformed
 
         visualizarFacturas facturas = new visualizarFacturas();
         Index.desktopPane.add(facturas);
         facturas.show();
-    }//GEN-LAST:event_aboutMenuItem3ActionPerformed
+    }//GEN-LAST:event_aclistFacturasActionPerformed
 
-    private void aboutMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItem2ActionPerformed
-
-        DatosMuestras datom = new DatosMuestras();
-        Index.desktopPane.add(datom);
-        datom.show();
-    }//GEN-LAST:event_aboutMenuItem2ActionPerformed
-
-    private void copyMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyMenuItem1ActionPerformed
+    private void acEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acEmpleadosActionPerformed
         Empleados empleados = new Empleados();
         Index.desktopPane.add(empleados);
         empleados.show();
-    }//GEN-LAST:event_copyMenuItem1ActionPerformed
 
-    private void botonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPacientesActionPerformed
+    }//GEN-LAST:event_acEmpleadosActionPerformed
+
+    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
 
         Pacientes paciente = new Pacientes();
         Index.desktopPane.add(paciente);
         paciente.show();
-    }//GEN-LAST:event_botonPacientesActionPerformed
+    }//GEN-LAST:event_btnPacientesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
 
         Citas citas = new Citas();
         Index.desktopPane.add(citas);
         citas.show();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnCitasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturasActionPerformed
         Facturas factura = new Facturas();
         Index.desktopPane.add(factura);
         factura.show();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnFacturasActionPerformed
 
-    private void contentMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contentMenuItem4ActionPerformed
+    private void acUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acUnidadesActionPerformed
         Unidad unidad = new Unidad();
         Index.desktopPane.add(unidad);
         unidad.show();
-    }//GEN-LAST:event_contentMenuItem4ActionPerformed
+    }//GEN-LAST:event_acUnidadesActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -483,33 +480,32 @@ public class Index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem aboutMenuItem1;
-    private javax.swing.JMenuItem aboutMenuItem2;
-    private javax.swing.JMenuItem aboutMenuItem3;
-    private javax.swing.JButton botonPacientes;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem contentMenuItem1;
-    private javax.swing.JMenuItem contentMenuItem2;
-    private javax.swing.JMenuItem contentMenuItem3;
-    private javax.swing.JMenuItem contentMenuItem4;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem copyMenuItem1;
-    private javax.swing.JMenuItem cutMenuItem1;
+    private javax.swing.JMenuItem acAnalisis;
+    private javax.swing.JMenuItem acCategorias;
+    private javax.swing.JMenuItem acCitas;
+    private javax.swing.JMenuItem acEmpleados;
+    private javax.swing.JMenuItem acExamSistema;
+    private javax.swing.JMenuItem acFacturas;
+    private javax.swing.JMenuItem acPacientes;
+    private javax.swing.JMenuItem acTipEmpleados;
+    private javax.swing.JMenuItem acUnidades;
+    private javax.swing.JMenuItem aclistCitas;
+    private javax.swing.JMenuItem aclistEmpleados;
+    private javax.swing.JMenuItem aclistFacturas;
+    private javax.swing.JMenuItem aclistPacientes;
+    private javax.swing.JButton btnCitas;
+    private javax.swing.JButton btnEmpleados;
+    private javax.swing.JButton btnExamenes;
+    private javax.swing.JButton btnFacturas;
+    private javax.swing.JButton btnPacientes;
     public static javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenu helpMenu1;
-    private javax.swing.JMenu helpMenu2;
-    private javax.swing.JMenu helpMenu3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private static javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenu fileCitas;
+    private javax.swing.JMenu fileEmpleados;
+    private javax.swing.JMenu fileExamPacientes;
+    private javax.swing.JMenu fileExamSistema;
+    private javax.swing.JMenu fileFacturas;
+    private javax.swing.JMenu filePacientes;
+    public static javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
 }

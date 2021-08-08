@@ -1,5 +1,7 @@
+package Models.Citas;
 
-package Model.Citas;
+
+
 
 import Models.Models.ModelCore;
 import java.awt.HeadlessException;

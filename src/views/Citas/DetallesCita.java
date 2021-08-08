@@ -1,7 +1,7 @@
 
 package views.Citas;
 
-import Model.Citas.ModelCitas;
+import Models.Citas.ModelCitas;
 import Model.Citas.ModelDetalleCita;
 import Models.Examenes.ModelExamenes;
 import Models.Pacientes.ModelPacientes;

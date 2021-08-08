@@ -1,11 +1,18 @@
 package views.admin;
 
+import Class.Usuario;
+import Models.admin.ModelAdmin;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import views.Index;
 
 public class Login extends javax.swing.JInternalFrame {
 
+    
+    ModelAdmin admin = new ModelAdmin();
     public Login() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -19,13 +26,13 @@ public class Login extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btn_send = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setTitle("Inicio de sesión");
@@ -39,6 +46,11 @@ public class Login extends javax.swing.JInternalFrame {
         btn_send.setText("Enviar");
         btn_send.setBorder(null);
         btn_send.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sendActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 255));
@@ -71,7 +83,7 @@ public class Login extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
@@ -81,8 +93,8 @@ public class Login extends javax.swing.JInternalFrame {
                                 .addComponent(btn_send, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38))
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
                 .addContainerGap(339, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -93,15 +105,14 @@ public class Login extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btn_send, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addComponent(btn_send, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -130,6 +141,40 @@ public class Login extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btn_sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sendActionPerformed
+        
+        
+        if(validator()){
+            Usuario usuario = this.admin.inUser(this.txtUser.getText(), this.txtPassword.getText());
+            if(usuario!=null){
+                ContinueComponents();
+                Index.user = usuario;
+                
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas","Accion no realizada",JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        
+    }//GEN-LAST:event_btn_sendActionPerformed
+
+    private boolean validator(){
+        return !this.txtUser.getText().isEmpty() && !this.txtPassword.getText().isEmpty();
+    }
+    
+    
+    public static void ContinueComponents() {
+        Component[] components = Index.desktopPane.getComponents();
+        Component[] bars = Index.menuBar.getComponents();
+        for (Component component : components) {
+            component.setEnabled(true);
+        }
+        for (Component bar : bars) {
+            bar.setEnabled(true);
+        }
+
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_send;
@@ -139,7 +184,7 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
