@@ -5,6 +5,7 @@
  */
 package views.Facturas;
 
+import Model.Citas.ModelDetalleCita;
 import views.Citas.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,11 +19,14 @@ public class visualizarExamen extends javax.swing.JInternalFrame {
     /**
      * Creates new form seleccionarPaciente
      */
+    ModelDetalleCita detalle = new ModelDetalleCita();
+    
     public visualizarExamen() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-50);
+        this.tablaDetalles.setModel(this.detalle.mostrarInterfaz(Facturas.idcita));
     }
 
     /**
@@ -36,7 +40,7 @@ public class visualizarExamen extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDetalles = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -44,7 +48,7 @@ public class visualizarExamen extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDetalles);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Examenes realizados");
@@ -87,6 +91,6 @@ public class visualizarExamen extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaDetalles;
     // End of variables declaration//GEN-END:variables
 }

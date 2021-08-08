@@ -99,4 +99,6 @@ public class ModelDetalleCita {
 
         return tabla;
     }
+    
+    
 }
