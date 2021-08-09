@@ -244,7 +244,7 @@
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbname" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtdescipcion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="txtdescipcion" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>

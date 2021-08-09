@@ -170,10 +170,10 @@ public class Index extends javax.swing.JFrame {
         desktopPane.add(btnFacturas1);
         btnFacturas1.setBounds(150, 440, 180, 60);
 
-        lbEmpleado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbEmpleado.setText("Bienvenido:");
+        lbEmpleado.setFont(new java.awt.Font("COCOGOOSE ", 0, 14)); // NOI18N
+        lbEmpleado.setText("Bienvenido");
         desktopPane.add(lbEmpleado);
-        lbEmpleado.setBounds(10, 10, 550, 17);
+        lbEmpleado.setBounds(940, 20, 330, 15);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
@@ -482,6 +482,9 @@ public class Index extends javax.swing.JFrame {
 
     private void btnFacturas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturas1ActionPerformed
         // TODO add your handling code here:
+        Facturas facturas = new Facturas();
+        Index.desktopPane.add(facturas);
+        facturas.show();
     }//GEN-LAST:event_btnFacturas1ActionPerformed
 
     public static void main(String args[]) {
