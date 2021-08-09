@@ -41,7 +41,7 @@ public class ModelFacturas {
     }
         
         public DefaultTableModel mostrarTxt() {
-        String[] titulos = {"ID Factura", "ID Cita", "Nombre", "Cedula","Fecha pago","precio_total"};
+        String[] titulos = {"ID Factura", "ID Cita", "Nombre", "Cedula","Fecha pago","Total"};
         String[] registros = new String[6];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);
