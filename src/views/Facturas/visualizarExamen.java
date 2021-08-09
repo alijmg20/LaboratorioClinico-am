@@ -5,7 +5,7 @@
  */
 package views.Facturas;
 
-import Model.Citas.ModelDetalleCita;
+import Models.Citas.ModelDetalleCita;
 import views.Citas.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
