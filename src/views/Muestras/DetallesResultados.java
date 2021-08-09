@@ -96,7 +96,8 @@ public class DetallesResultados extends javax.swing.JInternalFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tableResultado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tableResultado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableResultado.setGridColor(new java.awt.Color(255, 255, 255));
         tableResultado.setShowHorizontalLines(false);
         tableResultado.setShowVerticalLines(false);
         tableResultado.getTableHeader().setResizingAllowed(false);
