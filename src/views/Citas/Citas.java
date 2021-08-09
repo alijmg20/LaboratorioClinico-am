@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import views.Empleados.Empleados;
 import views.Index;
-import static views.Pacientes.Pacientes.id;
 
 
 public class Citas extends javax.swing.JInternalFrame {

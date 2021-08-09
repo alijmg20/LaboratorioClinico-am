@@ -1,5 +1,5 @@
 
-package Model.Citas;
+package Models.Citas;
 
 import java.awt.HeadlessException;
 import java.sql.Date;
@@ -17,7 +17,6 @@ public class ModelDetalleCita {
     
     public void create(String estado, int idexamen, int idcita){
         
-       
         try {
 
             String SQL = "CALL registrarDetalleCita(?,?,?)";
@@ -73,7 +72,7 @@ public class ModelDetalleCita {
     }   
         
     public DefaultTableModel mostrarInterfaz(int idcita) {
-        String[] titulos = {" ID ", " Nombre ", " Precio ", " Categoria ", " Estado "};
+        String[] titulos = {" ID ", " Nombre ", " Precio ", " Categoria ","estado"};
         String[] registros = new String[5];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);

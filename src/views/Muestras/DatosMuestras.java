@@ -1,15 +1,21 @@
 package views.Muestras;
 
-import Model.Citas.ModelDetalleCita;
+import Models.Citas.ModelDetalleCita;
+import Models.Muestras.ModelMuestras;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import views.Index;
 
 public class DatosMuestras extends javax.swing.JInternalFrame {
 
-    int idCitas;
+    int idCitas = 0;
     int idDetalleCita = -1;
     ModelDetalleCita detCitas = new ModelDetalleCita();
+    ModelMuestras muestras = new ModelMuestras();
+    DefaultTableModel tableTodo = new DefaultTableModel();
+
     public DatosMuestras() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,17 +24,16 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
 
     }
 
-    public DatosMuestras(int idCitas) {        
+    public DatosMuestras(int idCitas) {
         initComponents();
         this.idCitas = idCitas;
-        this.tableDatosMuestra.setModel(detCitas.mostrarInterfaz(idCitas));
+        this.tableDatosMuestra.setModel(muestras.readUnset(idCitas));
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width - ventana.width) / 2, ((pantalla.height - ventana.height) / 2) - 40);
 
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,7 +42,6 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnRegistrar1 = new javax.swing.JButton();
-        btnRegistrar2 = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -50,7 +54,7 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -74,8 +78,6 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
             }
         });
 
-        btnRegistrar2.setText("Eliminar");
-
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,11 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         });
 
         btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,10 +102,8 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrar1)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrar2)
-                .addGap(18, 18, 18)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(187, 187, 187))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +111,6 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar1)
-                    .addComponent(btnRegistrar2)
                     .addComponent(btnRegistrar)
                     .addComponent(btnClear))
                 .addContainerGap())
@@ -185,6 +189,12 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Buscar:");
@@ -197,7 +207,7 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -205,7 +215,7 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -225,10 +235,10 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -239,7 +249,6 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,45 +279,107 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        Muestras muestras = new Muestras();
-        Index.desktopPane.add(muestras);
-        muestras.show();
+
+        Muestras muestra = new Muestras();
+        Index.desktopPane.add(muestra);
+        muestra.show();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-        // TODO add your handling code here:
+
+        if (validator()) {
+
+            String resultado = this.txtResultado.getText();
+            String descripcion = this.txtDescripcion.getText();
+            if (this.idDetalleCita > 0) {
+                int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar este elemento?");
+                if (decision == 0) {
+                    this.muestras.update(resultado, descripcion, idDetalleCita);
+                    this.tableDatosMuestra.setModel(muestras.readUnset(idCitas));
+                    this.tableTodo = muestras.read(this.idDetalleCita);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No has seleccionado un detalle", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnRegistrar1ActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
-        if(validator()){
-            
-            
-            
+
+        if (validator()) {
+
+            String resultado = this.txtResultado.getText();
+            String descripcion = this.txtDescripcion.getText();
+            if (this.idDetalleCita > 0) {
+                this.muestras.create(resultado, descripcion, idDetalleCita, Index.user.getIdEmpleado());
+                this.tableDatosMuestra.setModel(muestras.readUnset(idCitas));
+                this.tableTodo = muestras.read(this.idDetalleCita);
+            } else {
+                JOptionPane.showMessageDialog(null, "No has seleccionado un detalle", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void tableDatosMuestraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDatosMuestraMouseClicked
         int filaSeleccionada = this.tableDatosMuestra.rowAtPoint(evt.getPoint());
         this.idDetalleCita = Integer.parseInt(this.tableDatosMuestra.getValueAt(filaSeleccionada, 0).toString());
+        this.tableTodo = muestras.read(this.idDetalleCita);
+
+        int i = 0;
+        Object[] objeto = null;
+        if (this.tableTodo.getRowCount() > 0) {
+
+            do {
+                if (idDetalleCita == Integer.parseInt(this.tableTodo.getValueAt(i, 0).toString())) {
+
+                    objeto = new Object[]{
+                        this.tableTodo.getValueAt(i, 0),
+                        this.tableTodo.getValueAt(i, 1),
+                        this.tableTodo.getValueAt(i, 2),};
+                }
+                i++;
+            } while (i < this.tableTodo.getRowCount());
+        }
+        if (objeto != null) {
+            this.txtResultado.setText(objeto[1].toString());
+            this.txtDescripcion.setText(objeto[2].toString());
+        } else {
+            this.txtResultado.setText("");
+            this.txtDescripcion.setText("");
+        }
+
+
     }//GEN-LAST:event_tableDatosMuestraMouseClicked
 
-    public boolean validator(){
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        this.txtDescripcion.setText("");
+        this.txtResultado.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
         
-        return !this.txtResultado.getText().isEmpty() && !this.txtDescripcion.getText().isEmpty() 
-                && this.idDetalleCita > 0;
+        this.tableDatosMuestra.setModel(this.muestras.search(idCitas, this.txtsearch.getText()));
         
+    }//GEN-LAST:event_txtsearchKeyReleased
+
+    public boolean validator() {
+
+        return !this.txtResultado.getText().isEmpty() && !this.txtDescripcion.getText().isEmpty();
+
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrar1;
-    private javax.swing.JButton btnRegistrar2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -318,11 +389,11 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbname;
     private javax.swing.JLabel lbname1;
     private javax.swing.JTable tableDatosMuestra;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtResultado;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }

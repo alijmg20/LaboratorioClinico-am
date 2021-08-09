@@ -1,7 +1,7 @@
 
 package views.Muestras;
 
-import Models.Citas.ModelCitas;
+import Models.Muestras.ModelAnalisis;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -9,12 +9,12 @@ import views.Index;
 
 public class Muestras extends javax.swing.JInternalFrame {
 
-    ModelCitas citas = new ModelCitas();
+    ModelAnalisis citas = new ModelAnalisis();
     int idCita;
     public Muestras() {
         initComponents();
         this.idCita = 0;
-        this.tableCitas.setModel(citas.mostrarInterfaz());
+        this.tableCitas.setModel(citas.read());
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         this.setLocation((pantalla.width-ventana.width) / 2 , ((pantalla.height-ventana.height) / 2)-40);

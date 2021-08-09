@@ -2,7 +2,7 @@
 package views.Citas;
 
 import Models.Citas.ModelCitas;
-import Model.Citas.ModelDetalleCita;
+import Models.Citas.ModelDetalleCita;
 import Models.Examenes.ModelExamenes;
 import Models.Pacientes.ModelPacientes;
 import java.awt.Dimension;
