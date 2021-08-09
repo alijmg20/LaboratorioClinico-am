@@ -9,8 +9,9 @@ import views.Index;
 
 public class ModelAnalisis extends ModelCore {
 
+    @Override
     public DefaultTableModel read() {
-        String[] titulos = {"ID", "Fecha Agendada", "Nombre Paciente", "Cedula"," estado "};
+        String[] titulos = {"ID cita", "Fecha Agendada", "Nombre Paciente", "Cedula"," estado "};
         String[] registros = new String[5];
 
         DefaultTableModel tabla = new DefaultTableModel(null, titulos);

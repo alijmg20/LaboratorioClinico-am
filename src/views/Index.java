@@ -20,6 +20,7 @@ import views.Facturas.Facturas;
 import views.Facturas.visualizarFacturas;
 import views.Muestras.DatosMuestras;
 import views.Muestras.Muestras;
+import views.Muestras.Resultados;
 import views.admin.Login;
 import views.examenes.Categoria;
 import views.examenes.Examenes;
@@ -69,6 +70,7 @@ public class Index extends javax.swing.JFrame {
         aclistCitas = new javax.swing.JMenuItem();
         fileExamPacientes = new javax.swing.JMenu();
         acAnalisis = new javax.swing.JMenuItem();
+        FilesResultados = new javax.swing.JMenuItem();
         fileFacturas = new javax.swing.JMenu();
         acFacturas = new javax.swing.JMenuItem();
         aclistFacturas = new javax.swing.JMenuItem();
@@ -274,6 +276,15 @@ public class Index extends javax.swing.JFrame {
         });
         fileExamPacientes.add(acAnalisis);
 
+        FilesResultados.setMnemonic('a');
+        FilesResultados.setText("Ver lista de Resultados");
+        FilesResultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilesResultadosActionPerformed(evt);
+            }
+        });
+        fileExamPacientes.add(FilesResultados);
+
         menuBar.add(fileExamPacientes);
 
         fileFacturas.setMnemonic('h');
@@ -316,54 +327,6 @@ public class Index extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void aclistPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistPacientesActionPerformed
-        ListadoPacientes listadoPacientes = new ListadoPacientes();
-        Index.desktopPane.add(listadoPacientes);
-        listadoPacientes.show();
-    }//GEN-LAST:event_aclistPacientesActionPerformed
-
-    private void acPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acPacientesActionPerformed
-        Pacientes paciente = new Pacientes();
-        Index.desktopPane.add(paciente);
-        paciente.show();
-    }//GEN-LAST:event_acPacientesActionPerformed
-
-    private void acTipEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acTipEmpleadosActionPerformed
-        if (user != null && user.getIdEmpleado() == 1) {
-            TipoEmpleado tipoEmpleado = new TipoEmpleado();
-            Index.desktopPane.add(tipoEmpleado);
-            tipoEmpleado.show();
-        } else {
-            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
-        }
-
-
-    }//GEN-LAST:event_acTipEmpleadosActionPerformed
-
-    private void aclistEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistEmpleadosActionPerformed
-        ListadoEmpleados listado = new ListadoEmpleados();
-        Index.desktopPane.add(listado);
-        listado.show();
-    }//GEN-LAST:event_aclistEmpleadosActionPerformed
-
-    private void acCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCategoriasActionPerformed
-        Categoria categorias = new Categoria();
-        Index.desktopPane.add(categorias);
-        categorias.show();
-    }//GEN-LAST:event_acCategoriasActionPerformed
-
-    private void acExamSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acExamSistemaActionPerformed
-        Examenes examenes = new Examenes();
-        Index.desktopPane.add(examenes);
-        examenes.show();
-    }//GEN-LAST:event_acExamSistemaActionPerformed
-
-    private void acCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCitasActionPerformed
-        Citas citas = new Citas();
-        Index.desktopPane.add(citas);
-        citas.show();
-    }//GEN-LAST:event_acCitasActionPerformed
-
     private void btnExamenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamenesActionPerformed
         Examenes examenes = new Examenes();
         Index.desktopPane.add(examenes);
@@ -375,38 +338,6 @@ public class Index extends javax.swing.JFrame {
         Index.desktopPane.add(empleados);
         empleados.show();
     }//GEN-LAST:event_btnEmpleadosActionPerformed
-
-    private void acAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acAnalisisActionPerformed
-        if (Index.user.getIdTipoEmpleado() == 1 || Index.user.getIdTipoEmpleado() == 2) {
-            Muestras muestra = new Muestras();
-            Index.desktopPane.add(muestra);
-            muestra.show();
-        }else{
-            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_acAnalisisActionPerformed
-
-    private void acFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acFacturasActionPerformed
-
-        Facturas factura = new Facturas();
-        Index.desktopPane.add(factura);
-        factura.show();
-
-    }//GEN-LAST:event_acFacturasActionPerformed
-
-    private void aclistFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistFacturasActionPerformed
-
-        visualizarFacturas facturas = new visualizarFacturas();
-        Index.desktopPane.add(facturas);
-        facturas.show();
-    }//GEN-LAST:event_aclistFacturasActionPerformed
-
-    private void acEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acEmpleadosActionPerformed
-        Empleados empleados = new Empleados();
-        Index.desktopPane.add(empleados);
-        empleados.show();
-
-    }//GEN-LAST:event_acEmpleadosActionPerformed
 
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
 
@@ -428,11 +359,95 @@ public class Index extends javax.swing.JFrame {
         factura.show();
     }//GEN-LAST:event_btnFacturasActionPerformed
 
+    private void aclistFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistFacturasActionPerformed
+
+        visualizarFacturas facturas = new visualizarFacturas();
+        Index.desktopPane.add(facturas);
+        facturas.show();
+    }//GEN-LAST:event_aclistFacturasActionPerformed
+
+    private void acFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acFacturasActionPerformed
+
+        Facturas factura = new Facturas();
+        Index.desktopPane.add(factura);
+        factura.show();
+    }//GEN-LAST:event_acFacturasActionPerformed
+
+    private void acAnalisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acAnalisisActionPerformed
+        if (Index.user.getIdTipoEmpleado() == 1 || Index.user.getIdTipoEmpleado() == 2) {
+            Muestras muestra = new Muestras();
+            Index.desktopPane.add(muestra);
+            muestra.show();
+        }else{
+            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_acAnalisisActionPerformed
+
+    private void acCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCitasActionPerformed
+        Citas citas = new Citas();
+        Index.desktopPane.add(citas);
+        citas.show();
+    }//GEN-LAST:event_acCitasActionPerformed
+
+    private void acExamSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acExamSistemaActionPerformed
+        Examenes examenes = new Examenes();
+        Index.desktopPane.add(examenes);
+        examenes.show();
+    }//GEN-LAST:event_acExamSistemaActionPerformed
+
     private void acUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acUnidadesActionPerformed
         Unidad unidad = new Unidad();
         Index.desktopPane.add(unidad);
         unidad.show();
     }//GEN-LAST:event_acUnidadesActionPerformed
+
+    private void acCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acCategoriasActionPerformed
+        Categoria categorias = new Categoria();
+        Index.desktopPane.add(categorias);
+        categorias.show();
+    }//GEN-LAST:event_acCategoriasActionPerformed
+
+    private void aclistEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistEmpleadosActionPerformed
+        ListadoEmpleados listado = new ListadoEmpleados();
+        Index.desktopPane.add(listado);
+        listado.show();
+    }//GEN-LAST:event_aclistEmpleadosActionPerformed
+
+    private void acEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acEmpleadosActionPerformed
+        Empleados empleados = new Empleados();
+        Index.desktopPane.add(empleados);
+        empleados.show();
+    }//GEN-LAST:event_acEmpleadosActionPerformed
+
+    private void acTipEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acTipEmpleadosActionPerformed
+        if (user != null && user.getIdEmpleado() == 1) {
+            TipoEmpleado tipoEmpleado = new TipoEmpleado();
+            Index.desktopPane.add(tipoEmpleado);
+            tipoEmpleado.show();
+        } else {
+            JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_acTipEmpleadosActionPerformed
+
+    private void aclistPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistPacientesActionPerformed
+        ListadoPacientes listadoPacientes = new ListadoPacientes();
+        Index.desktopPane.add(listadoPacientes);
+        listadoPacientes.show();
+    }//GEN-LAST:event_aclistPacientesActionPerformed
+
+    private void acPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acPacientesActionPerformed
+        Pacientes paciente = new Pacientes();
+        Index.desktopPane.add(paciente);
+        paciente.show();
+    }//GEN-LAST:event_acPacientesActionPerformed
+
+    private void FilesResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilesResultadosActionPerformed
+        Resultados resultados = new Resultados();
+        Index.desktopPane.add(resultados);
+        resultados.show();
+        
+    }//GEN-LAST:event_FilesResultadosActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -479,6 +494,7 @@ public class Index extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem FilesResultados;
     private javax.swing.JLabel Fondo;
     private javax.swing.JMenuItem acAnalisis;
     private javax.swing.JMenuItem acCategorias;
