@@ -97,6 +97,12 @@ public class ValoresNormalesSinRango extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Valor normal");
 
+        txtValor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtValorKeyTyped(evt);
+            }
+        });
+
         txtId.setEditable(false);
 
         jLabel3.setText("Id :");
@@ -322,6 +328,29 @@ public class ValoresNormalesSinRango extends javax.swing.JInternalFrame {
         this.tableValorNormal.setModel(this.tipoValor.search(idExamen, this.txtSearch.getText()));
         
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorKeyTyped
+        // TODO add your handling code here:
+      char C= evt.getKeyChar();
+     
+     if(Character.isDigit(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         txtValor.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         txtValor.setCursor(null);
+     }
+    }//GEN-LAST:event_txtValorKeyTyped
 
     private boolean validator() {
 

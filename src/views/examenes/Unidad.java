@@ -149,6 +149,11 @@ public class Unidad extends javax.swing.JInternalFrame {
                 txtdescipcionActionPerformed(evt);
             }
         });
+        txtdescipcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdescipcionKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -352,6 +357,22 @@ public class Unidad extends javax.swing.JInternalFrame {
         this.tableUnidades.setModel(this.unidades.searchUnset(this.txtsearch.getText()));
 
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void txtdescipcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdescipcionKeyTyped
+               // TODO add your handling code here:
+             char C= evt.getKeyChar();
+     
+             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+         txtdescipcion.setCursor(null);
+     }
+    }//GEN-LAST:event_txtdescipcionKeyTyped
 
     private boolean validator() {
 

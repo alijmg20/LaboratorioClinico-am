@@ -160,6 +160,11 @@ public class Categoria extends javax.swing.JInternalFrame {
                 nombretxtActionPerformed(evt);
             }
         });
+        nombretxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombretxtKeyTyped(evt);
+            }
+        });
 
         lbname1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -169,6 +174,11 @@ public class Categoria extends javax.swing.JInternalFrame {
 
         descripciontxt.setColumns(20);
         descripciontxt.setRows(5);
+        descripciontxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descripciontxtKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(descripciontxt);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -388,6 +398,45 @@ public class Categoria extends javax.swing.JInternalFrame {
         this.tableCategoria.setModel(this.categoria.search(this.txtsearch.getText()));
         
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void nombretxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombretxtKeyTyped
+        // TODO add your handling code here:
+      char C= evt.getKeyChar();
+     
+     if(Character.isDigit(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         nombretxt.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         nombretxt.setCursor(null);
+     }
+    }//GEN-LAST:event_nombretxtKeyTyped
+
+    private void descripciontxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripciontxtKeyTyped
+        // TODO add your handling code here:
+                     char C= evt.getKeyChar();
+     
+             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+         descripciontxt.setCursor(null);
+     }
+    }//GEN-LAST:event_descripciontxtKeyTyped
 
     private boolean validator() {
 

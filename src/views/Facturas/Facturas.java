@@ -308,6 +308,11 @@ public class Facturas extends javax.swing.JInternalFrame {
                 preciototaltxtActionPerformed(evt);
             }
         });
+        preciototaltxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                preciototaltxtKeyTyped(evt);
+            }
+        });
 
         jButton3.setText("visualizar examenes");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -550,6 +555,29 @@ public class Facturas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.tablaFacturas.setModel(this.facturas.buscarFactura(this.txtsearch.getText()));
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void preciototaltxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preciototaltxtKeyTyped
+        // TODO add your handling code here:
+                 char C= evt.getKeyChar();
+     
+     if(Character.isLetter(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         preciototaltxt.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<46
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         preciototaltxt.setCursor(null);
+     }
+    }//GEN-LAST:event_preciototaltxtKeyTyped
 
     private boolean validator() {
 

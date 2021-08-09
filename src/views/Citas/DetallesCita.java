@@ -264,6 +264,7 @@ public class DetallesCita extends javax.swing.JInternalFrame {
         int FilaSeleccionada = tablaExamenes.getSelectedRow(); 
         String[] registros = new String[4];   
         int idexa =0; 
+        int auxi = 0; 
         
         if(FilaSeleccionada>=0){
             
@@ -282,35 +283,37 @@ public class DetallesCita extends javax.swing.JInternalFrame {
         String estado = "por realizar";
        
   
-        /*
+        
         if (arrayIDexamenes.length > 0) { // mientras exista 1 examen seleccionado           
         for (int i = 0; i < tablaSeleccionado.getRowCount(); i++) {       
 			System.out.println("Prueba de tabla seleccionado: "+tablaSeleccionado.getValueAt(i, 0));
                         arrayIDexamenes [i] = Integer.parseInt((String) tablaSeleccionado.getValueAt(i, 0));
 				//System.out.println();
-			}     */   
+			}      
         // verificar que el arreglo este guardando bien 
-        /* 
+         
         for(int x =0; x < arrayIDexamenes.length ; x++ ){
-            System.out.println("Muestra de arreglo completo= "+arrayIDexamenes[x]);
-        } */    
+           // System.out.println("Muestra de arreglo completo= "+arrayIDexamenes[x]);
+            if( idexa == arrayIDexamenes[x] ){
+                auxi = 1; 
+            }
+        }    
         
-        
-        System.out.println("ID CITA : "+idcita);             
-        System.out.println("ID examen: "+idexa);
-             // ejecuta esta consulta hasta que se termine de recorrer todo el array de id
-                                                  // de los examenes seleccionados 
-                
           int decision = JOptionPane.showConfirmDialog(null, "¿Desea Registrar el examen seleccionado?");                            
            if(idexa !=0){ 
-            this.detalle.create(estado,idexa,idcita);
-            modelo2.addRow(registros);
-            tablaSeleccionado.setModel(detalle.mostrarInterfaz(idcita));
-           // tablaSeleccionado.setModel(modelo2);
-           } else {
-            JOptionPane.showMessageDialog(null, "Debes seleccionar un examen", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+               if(decision ==0) {
+                   if(auxi == 0){
+                        this.detalle.create(estado,idexa,idcita);
+                        modelo2.addRow(registros);
+                        tablaSeleccionado.setModel(detalle.mostrarInterfaz(idcita));
+                   }else{
+                    JOptionPane.showMessageDialog(null, "No puedes seleccionar el mismo examen 2 veces", "Accion no realizada", JOptionPane.WARNING_MESSAGE);   
+                   }
+               }
+               } else {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un examen", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
         }
-    
     }//GEN-LAST:event_btnseleccionarActionPerformed
 
     private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased

@@ -113,8 +113,18 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
         jLabel4.setText("Genero");
 
         txtdesde.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txtdesde.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdesdeKeyTyped(evt);
+            }
+        });
 
         txthasta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        txthasta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txthastaKeyTyped(evt);
+            }
+        });
 
         rbm.setBackground(new java.awt.Color(255, 255, 255));
         BgGenero.add(rbm);
@@ -381,6 +391,52 @@ public class ValoresNormalesConRango extends javax.swing.JInternalFrame {
         this.rbf.setSelected(false);
         this.rbm.setSelected(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void txtdesdeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdesdeKeyTyped
+        // TODO add your handling code here:
+                 char C= evt.getKeyChar();
+     
+     if(Character.isLetter(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         txtdesde.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<46
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         txtdesde.setCursor(null);
+     }
+    }//GEN-LAST:event_txtdesdeKeyTyped
+
+    private void txthastaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthastaKeyTyped
+        // TODO add your handling code here:
+                 char C= evt.getKeyChar();
+     
+     if(Character.isLetter(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         txthasta.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<46
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         txthasta.setCursor(null);
+     }
+    }//GEN-LAST:event_txthastaKeyTyped
 
     private boolean validator() {
         return !this.txtdesde.getText().isEmpty() && !this.txthasta.getText().isEmpty()

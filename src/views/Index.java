@@ -2,6 +2,7 @@ package views;
 
 import Class.Usuario;
 import Controllers.ConnectionDB;
+import Models.admin.ModelAdmin;
 import java.awt.Component;
 import java.awt.Image;
 import java.sql.Connection;
@@ -28,6 +29,8 @@ import views.examenes.Unidad;
 
 public class Index extends javax.swing.JFrame {
 
+
+    
     public static ConnectionDB con = new ConnectionDB();
     public static Connection connection = con.conectar();
     public static Usuario user = null;
@@ -35,7 +38,6 @@ public class Index extends javax.swing.JFrame {
     public Index() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-
         stopComponents();
         Login login = new Login();
         Index.desktopPane.add(login);

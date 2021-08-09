@@ -150,6 +150,11 @@ public class TipoEmpleado extends javax.swing.JInternalFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         lbname1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -339,6 +344,28 @@ public class TipoEmpleado extends javax.swing.JInternalFrame {
     private void txtbuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyReleased
         this.tableTipoEmpleados.setModel(this.tipoEmpleado.search(this.txtbuscar.getText()));
     }//GEN-LAST:event_txtbuscarKeyReleased
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+      char C= evt.getKeyChar();
+     
+     if(Character.isDigit(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         txtNombre.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         txtNombre.setCursor(null);
+     }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

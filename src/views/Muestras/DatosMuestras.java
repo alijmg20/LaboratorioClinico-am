@@ -149,8 +149,19 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         lbname1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbname1.setText("Descripcion: ");
 
+        txtResultado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtResultadoKeyTyped(evt);
+            }
+        });
+
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDescripcion);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -368,6 +379,38 @@ public class DatosMuestras extends javax.swing.JInternalFrame {
         this.tableDatosMuestra.setModel(this.muestras.search(idCitas, this.txtsearch.getText()));
         
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void txtResultadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtResultadoKeyTyped
+        // TODO add your handling code here:
+                     char C= evt.getKeyChar();
+     
+             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+         txtResultado.setCursor(null);
+     }
+    }//GEN-LAST:event_txtResultadoKeyTyped
+
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+        // TODO add your handling code here:
+                     char C= evt.getKeyChar();
+     
+             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+         txtDescripcion.setCursor(null);
+     }
+    }//GEN-LAST:event_txtDescripcionKeyTyped
 
     public boolean validator() {
 

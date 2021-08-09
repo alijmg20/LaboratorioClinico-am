@@ -168,11 +168,21 @@ public class Pacientes extends javax.swing.JInternalFrame {
 
         direcciontxt.setColumns(20);
         direcciontxt.setRows(5);
+        direcciontxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                direcciontxtKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(direcciontxt);
 
         cedulatxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cedulatxtActionPerformed(evt);
+            }
+        });
+        cedulatxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cedulatxtKeyTyped(evt);
             }
         });
 
@@ -216,6 +226,11 @@ public class Pacientes extends javax.swing.JInternalFrame {
                 telefonotxtActionPerformed(evt);
             }
         });
+        telefonotxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonotxtKeyTyped(evt);
+            }
+        });
 
         correotxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +245,11 @@ public class Pacientes extends javax.swing.JInternalFrame {
         nombretxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombretxtActionPerformed(evt);
+            }
+        });
+        nombretxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombretxtKeyTyped(evt);
             }
         });
 
@@ -573,6 +593,90 @@ public class Pacientes extends javax.swing.JInternalFrame {
         this.tablePacientes.setModel(this.pacientes.buscarPaciente(this.txtsearch.getText()));
         
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void nombretxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombretxtKeyTyped
+      char C= evt.getKeyChar();
+     
+     if(Character.isDigit(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         nombretxt.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+         nombretxt.setCursor(null);
+     }
+    }//GEN-LAST:event_nombretxtKeyTyped
+
+    private void cedulatxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulatxtKeyTyped
+        // TODO add your handling code here:
+                 char C= evt.getKeyChar();
+     
+     if(Character.isLetter(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         cedulatxt.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         cedulatxt.setCursor(null);
+     }
+    }//GEN-LAST:event_cedulatxtKeyTyped
+
+    private void telefonotxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonotxtKeyTyped
+        // TODO add your handling code here:
+         char C= evt.getKeyChar();
+     
+     if(Character.isLetter(C))
+     {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         telefonotxt.setCursor(null);
+     }
+     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+         telefonotxt.setCursor(null);
+     }
+    }//GEN-LAST:event_telefonotxtKeyTyped
+
+    private void direcciontxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_direcciontxtKeyTyped
+        // TODO add your handling code here:
+                     char C= evt.getKeyChar();
+     
+             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
+             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
+             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
+             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
+    {
+         getToolkit().beep();
+         evt.consume();
+         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+         direcciontxt.setCursor(null);
+     }
+    }//GEN-LAST:event_direcciontxtKeyTyped
 
     
     private boolean validator() {

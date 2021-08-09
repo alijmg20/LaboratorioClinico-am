@@ -264,6 +264,7 @@
             <Component class="javax.swing.JTextField" name="txtdescipcion">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtdescipcionActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtdescipcionKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>
