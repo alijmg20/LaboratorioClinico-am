@@ -45,8 +45,6 @@ public class visualizarExamen extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         jScrollPane1.setViewportView(tablaDetalles);
 

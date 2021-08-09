@@ -266,41 +266,31 @@ public class DetallesCita extends javax.swing.JInternalFrame {
         int idexa =0; 
         int auxi = 0; 
         
-        if(FilaSeleccionada>=0){
-            
-               idexa = Integer.parseInt(this.tablaExamenes.getValueAt(FilaSeleccionada, 0).toString()); 
-            
+        if(FilaSeleccionada>=0){            
+               idexa = Integer.parseInt(this.tablaExamenes.getValueAt(FilaSeleccionada, 0).toString());            
                 registros[0] = this.tablaExamenes.getValueAt(FilaSeleccionada, 0).toString();
                 registros[1] = this.tablaExamenes.getValueAt(FilaSeleccionada, 1).toString();
                 registros[2] = this.tablaExamenes.getValueAt(FilaSeleccionada, 2).toString();
-                registros[3] = this.tablaExamenes.getValueAt(FilaSeleccionada, 3).toString(); 
-                
-               // modelo2.addRow(registros);     
+                registros[3] = this.tablaExamenes.getValueAt(FilaSeleccionada, 3).toString();   
         }
-        
-        
+             
         arrayIDexamenes = new int[tablaSeleccionado.getRowCount()]; 
         String estado = "por realizar";
-       
-  
-        
+   
         if (arrayIDexamenes.length > 0) { // mientras exista 1 examen seleccionado           
-        for (int i = 0; i < tablaSeleccionado.getRowCount(); i++) {       
-			System.out.println("Prueba de tabla seleccionado: "+tablaSeleccionado.getValueAt(i, 0));
-                        arrayIDexamenes [i] = Integer.parseInt((String) tablaSeleccionado.getValueAt(i, 0));
-				//System.out.println();
-			}      
-        // verificar que el arreglo este guardando bien 
-         
-        for(int x =0; x < arrayIDexamenes.length ; x++ ){
-           // System.out.println("Muestra de arreglo completo= "+arrayIDexamenes[x]);
-            if( idexa == arrayIDexamenes[x] ){
+            for (int i = 0; i < tablaSeleccionado.getRowCount(); i++) {       
+                arrayIDexamenes [i] = Integer.parseInt((String) tablaSeleccionado.getValueAt(i, 0));
+            }      
+ 
+            for(int x =0; x < arrayIDexamenes.length ; x++ ){
+                if( idexa == arrayIDexamenes[x] ){
                 auxi = 1; 
-            }
-        }    
+                }
+            }  
+        }
         
           int decision = JOptionPane.showConfirmDialog(null, "¿Desea Registrar el examen seleccionado?");                            
-           if(idexa !=0){ 
+           if( idexa !=0){ 
                if(decision ==0) {
                    if(auxi == 0){
                         this.detalle.create(estado,idexa,idcita);
@@ -313,7 +303,7 @@ public class DetallesCita extends javax.swing.JInternalFrame {
                } else {
                 JOptionPane.showMessageDialog(null, "Debes seleccionar un examen", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
             }
-        }
+        
     }//GEN-LAST:event_btnseleccionarActionPerformed
 
     private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased

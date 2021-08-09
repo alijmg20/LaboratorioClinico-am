@@ -61,8 +61,6 @@ public class SeleccionarPaciente extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setMinimumSize(new java.awt.Dimension(110, 34));
         setPreferredSize(new java.awt.Dimension(581, 375));
 
