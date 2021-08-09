@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import views.Empleados.Empleados;
+import views.Facturas.Facturas;
 import views.Index;
 
 
@@ -20,14 +21,15 @@ public class Citas extends javax.swing.JInternalFrame {
     
     
     ModelCitas citas = new ModelCitas();
-    
+ 
     DefaultTableModel tablaTodox = new DefaultTableModel();
     
     
     public static int idcita=0;
     public static int idpaciente =0; 
     public static int idempleado =3;
-    public static int [] idexamen; 
+    public static int [] idexamen;
+    public static int bandera = 0; 
 
     
     public Citas() {
@@ -126,6 +128,11 @@ public class Citas extends javax.swing.JInternalFrame {
         });
 
         btnClear1.setText("Pagar cita");
+        btnClear1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClear1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -521,37 +528,11 @@ public class Citas extends javax.swing.JInternalFrame {
             Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String)  objeto[8].toString());
             this.fechaAgendadatxt.setDatoFecha(date);
             
-            
-            
-            
-            
-            
-            
-            
-            /*
-            idcita = Integer.parseInt(this.tablaTodox.getValueAt(filaSeleccionada, 0).toString()); // para el manejo interno del id
-            idpaciente = Integer.parseInt(this.tablaTodox.getValueAt(filaSeleccionada, 1).toString()); // para el manejo interno del id  
-            
-            cedulatxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 2).toString());
-            nombretxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 3).toString());
-            fechatxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 4).toString());
-            correotxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 5).toString());
-            direcciontxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 6).toString());
-            telefonotxt.setText(this.tablaTodox.getValueAt(filaSeleccionada, 7).toString());
-            Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String) this.tablaTodox.getValueAt(filaSeleccionada, 8));
-            this.fechaAgendadatxt.setDatoFecha(date);
-            
-            */
-            
-            
- 
        
         } catch (Exception ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        System.out.println("ID PACIENTE: "+idpaciente);
-        System.out.println("ID CITA: "+idcita);
+
 
     }//GEN-LAST:event_tableCitasMouseClicked
 
@@ -594,6 +575,8 @@ public class Citas extends javax.swing.JInternalFrame {
         this.fechatxt.setText("");
         this.telefonotxt.setText("");
         this.direcciontxt.setText("");
+        idcita = 0; 
+        idpaciente = 0; 
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -607,7 +590,7 @@ public class Citas extends javax.swing.JInternalFrame {
         
         if (validator()) {
     
-            String statusCita = "por realizar"; 
+            String statusCita = "incompleta"; 
             Date fechaDate = this.fechaAgendadatxt.getDatoFecha();
             String fecha_agendada = formateo.format(fechaDate);
             String fecha_emision1 = formateo.format(fecha_emision); 
@@ -667,6 +650,18 @@ public class Citas extends javax.swing.JInternalFrame {
         
          this.tableCitas.setModel(this.citas.buscarCita(this.txtsearch.getText()));
     }//GEN-LAST:event_txtsearchKeyReleased
+
+    private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
+        if(idcita > 0){
+            
+        bandera = 1;
+        Facturas list = new Facturas();
+        Index.desktopPane.add(list);
+        list.show();
+        }else {
+            JOptionPane.showMessageDialog(null, "Debes seleccionar una cita","Accion no realizada", JOptionPane.WARNING_MESSAGE);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClear1ActionPerformed
 
     private boolean validator() {
 

@@ -159,12 +159,8 @@ public class SeleccionarPaciente extends javax.swing.JInternalFrame {
        
         int filaSeleccionada = this.tablaPacientes.rowAtPoint(evt.getPoint());
         int identifier = Integer.parseInt(this.tablaPacientes.getValueAt(filaSeleccionada, 0).toString());
-        
-      //  idpaciente = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
-       // System.out.println("Prueba de id: "+idpaciente); 
-                    
-        
-  try {
+
+    try {
             int i = 0;
             Object[] objeto = null;
             do {
@@ -183,11 +179,7 @@ public class SeleccionarPaciente extends javax.swing.JInternalFrame {
                 }
                 i++;
             } while (i < this.tablaTodo.getRowCount());
-            
-            
-            
-            
-            
+              
           //  idpaciente = Integer.parseInt(this.tablaTodo.getValueAt(filaSeleccionada, 0).toString());
             idpaciente = Integer.parseInt(objeto[0].toString());
         
@@ -195,14 +187,9 @@ public class SeleccionarPaciente extends javax.swing.JInternalFrame {
             Citas.nombretxt.setText(objeto[1].toString());
             Citas.fechatxt.setText(objeto[4].toString());
             Citas.correotxt.setText(objeto[5].toString());
-            Citas.direcciontxt.setText(objeto[6].toString());
-            Citas.telefonotxt.setText(objeto[7].toString());
+            Citas.direcciontxt.setText(objeto[7].toString());
+            Citas.telefonotxt.setText(objeto[6].toString());
 
-            
-            
-        System.out.println("ID PACIENTE: "+idpaciente);
-        
-       
         } catch (Exception ex) {
             Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
