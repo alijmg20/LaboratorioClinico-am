@@ -1,7 +1,7 @@
 
 package views.Facturas;
 
-import Model.Facturas.ModelFacturas;
+import Models.Facturas.ModelFacturas;
 import Models.Citas.ModelCitas;
 import views.Citas.*;
 import java.awt.Dimension;

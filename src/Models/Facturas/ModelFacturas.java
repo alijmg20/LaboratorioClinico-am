@@ -1,5 +1,5 @@
 
-package Model.Facturas;
+package Models.Facturas;
 
 import java.awt.HeadlessException;
 import java.sql.Date;
