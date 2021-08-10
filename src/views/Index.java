@@ -29,8 +29,6 @@ import views.examenes.Unidad;
 
 public class Index extends javax.swing.JFrame {
 
-
-    
     public static ConnectionDB con = new ConnectionDB();
     public static Connection connection = con.conectar();
     public static Usuario user = null;
@@ -54,6 +52,8 @@ public class Index extends javax.swing.JFrame {
         btnPacientes = new javax.swing.JButton();
         btnFacturas = new javax.swing.JButton();
         btnCitas = new javax.swing.JButton();
+        btnFacturas1 = new javax.swing.JButton();
+        lbEmpleado = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         filePacientes = new javax.swing.JMenu();
@@ -94,7 +94,7 @@ public class Index extends javax.swing.JFrame {
             }
         });
         desktopPane.add(btnExamenes);
-        btnExamenes.setBounds(150, 520, 180, 60);
+        btnExamenes.setBounds(150, 350, 180, 60);
 
         btnEmpleados.setBackground(new java.awt.Color(180, 185, 210));
         btnEmpleados.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
@@ -109,7 +109,7 @@ public class Index extends javax.swing.JFrame {
             }
         });
         desktopPane.add(btnEmpleados);
-        btnEmpleados.setBounds(150, 400, 180, 60);
+        btnEmpleados.setBounds(150, 250, 180, 60);
 
         btnPacientes.setBackground(new java.awt.Color(180, 185, 210));
         btnPacientes.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
@@ -122,12 +122,12 @@ public class Index extends javax.swing.JFrame {
             }
         });
         desktopPane.add(btnPacientes);
-        btnPacientes.setBounds(150, 170, 180, 60);
+        btnPacientes.setBounds(150, 90, 180, 60);
 
         btnFacturas.setBackground(new java.awt.Color(180, 185, 210));
         btnFacturas.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
-        btnFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Facturas.png"))); // NOI18N
-        btnFacturas.setText("Facturas");
+        btnFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Cerrar_Sesion.png"))); // NOI18N
+        btnFacturas.setText("Cerrar sesion");
         btnFacturas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnFacturas.setMaximumSize(new java.awt.Dimension(129, 61));
         btnFacturas.setMinimumSize(new java.awt.Dimension(129, 61));
@@ -137,7 +137,7 @@ public class Index extends javax.swing.JFrame {
             }
         });
         desktopPane.add(btnFacturas);
-        btnFacturas.setBounds(150, 620, 180, 60);
+        btnFacturas.setBounds(150, 540, 180, 60);
 
         btnCitas.setBackground(new java.awt.Color(180, 185, 210));
         btnCitas.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
@@ -153,7 +153,27 @@ public class Index extends javax.swing.JFrame {
             }
         });
         desktopPane.add(btnCitas);
-        btnCitas.setBounds(150, 290, 180, 60);
+        btnCitas.setBounds(150, 170, 180, 60);
+
+        btnFacturas1.setBackground(new java.awt.Color(180, 185, 210));
+        btnFacturas1.setFont(new java.awt.Font("COCOGOOSE ", 1, 12)); // NOI18N
+        btnFacturas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/Facturas.png"))); // NOI18N
+        btnFacturas1.setText("Facturas");
+        btnFacturas1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnFacturas1.setMaximumSize(new java.awt.Dimension(129, 61));
+        btnFacturas1.setMinimumSize(new java.awt.Dimension(129, 61));
+        btnFacturas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturas1ActionPerformed(evt);
+            }
+        });
+        desktopPane.add(btnFacturas1);
+        btnFacturas1.setBounds(150, 440, 180, 60);
+
+        lbEmpleado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbEmpleado.setText("Bienvenido:");
+        desktopPane.add(lbEmpleado);
+        lbEmpleado.setBounds(10, 10, 550, 17);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
@@ -356,9 +376,18 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void btnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturasActionPerformed
-        Facturas factura = new Facturas();
-        Index.desktopPane.add(factura);
-        factura.show();
+        int decision = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea cerrar sesion?");
+        
+        if (decision == 0) {
+            stopComponents();
+            Index.user = null;
+            Index.lbEmpleado.setText("Bienvenido: ");
+            Login login = new Login();
+            Index.desktopPane.add(login);
+            login.show();
+            
+        }
+
     }//GEN-LAST:event_btnFacturasActionPerformed
 
     private void aclistFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aclistFacturasActionPerformed
@@ -380,7 +409,7 @@ public class Index extends javax.swing.JFrame {
             Muestras muestra = new Muestras();
             Index.desktopPane.add(muestra);
             muestra.show();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No esta autorizado para esta accion", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_acAnalisisActionPerformed
@@ -448,8 +477,12 @@ public class Index extends javax.swing.JFrame {
         Resultados resultados = new Resultados();
         Index.desktopPane.add(resultados);
         resultados.show();
-        
+
     }//GEN-LAST:event_FilesResultadosActionPerformed
+
+    private void btnFacturas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFacturas1ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -515,6 +548,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton btnEmpleados;
     private javax.swing.JButton btnExamenes;
     private javax.swing.JButton btnFacturas;
+    private javax.swing.JButton btnFacturas1;
     private javax.swing.JButton btnPacientes;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu fileCitas;
@@ -523,6 +557,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JMenu fileExamSistema;
     private javax.swing.JMenu fileFacturas;
     private javax.swing.JMenu filePacientes;
+    public static javax.swing.JLabel lbEmpleado;
     public static javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
