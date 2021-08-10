@@ -461,7 +461,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
         SimpleDateFormat formateo = new SimpleDateFormat(formato); 
 
         if (validator()) {
-
+            if (this.pacientes.ValidarMail(this.correotxt.getText())) {
             String nombre = this.nombretxt.getText();
             int cedula = Integer.parseInt(this.cedulatxt.getText());
             char sexo = this.rbH.isSelected() ? 'H' : 'M';
@@ -476,6 +476,9 @@ public class Pacientes extends javax.swing.JInternalFrame {
             this.pacientes.create(nombre, sexo,fechaNac, cedula, correo, direccion,telefono);
             this.tablePacientes.setModel(this.pacientes.mostrarInterfaz());
             this.tablaTodo = pacientes.mostrarTxt();
+            }else{
+                JOptionPane.showMessageDialog(null, "El correo es invalido", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -541,6 +544,7 @@ public class Pacientes extends javax.swing.JInternalFrame {
         SimpleDateFormat formateo = new SimpleDateFormat(formato); 
         if (validator()) {
           //  int id = Integer.parseInt(this.txtId.getText());
+            if (this.pacientes.ValidarMail(this.correotxt.getText())) {
             String nombre = this.nombretxt.getText();
             int cedula = Integer.parseInt(this.cedulatxt.getText());
             char sexo = this.rbH.isSelected() ? 'H' : 'M';
@@ -552,6 +556,9 @@ public class Pacientes extends javax.swing.JInternalFrame {
             this.pacientes.update(id,nombre, sexo,fechaNac, cedula, correo, direccion,telefono);
             this.tablePacientes.setModel(this.pacientes.mostrarInterfaz());
             this.tablaTodo = pacientes.mostrarTxt();
+            }else{
+                JOptionPane.showMessageDialog(null, "El correo es invalido", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }

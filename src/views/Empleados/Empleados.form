@@ -527,6 +527,9 @@
               </Events>
             </Component>
             <Component class="rojeru_san.rsdate.RSDateChooser" name="rsfecha_nacimiento">
+              <Properties>
+                <Property name="placeholder" type="java.lang.String" value=""/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>

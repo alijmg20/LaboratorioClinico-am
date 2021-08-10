@@ -256,6 +256,8 @@ public class Empleados extends javax.swing.JInternalFrame {
             }
         });
 
+        rsfecha_nacimiento.setPlaceholder("");
+
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Cedula");
@@ -585,31 +587,34 @@ public class Empleados extends javax.swing.JInternalFrame {
         String formatoFecha = ("yyyy/MM/dd"); //ESTO ES EL FORMATO   año/mes/fecha
         SimpleDateFormat formateo = new SimpleDateFormat(formatoFecha); //ESTO FORMATEA LA FECHA YA QUE ESTE NO RETORNA UN STRING
         if (validator()) {
-            int id = Integer.parseInt(this.txtId.getText());
-            String nombre = this.txtnombre.getText();
-            String username = this.txtusuario.getText();
-            String correo = this.txtCorreo.getText();
-            String clave = SecurityKey.Encriptar(this.txtClave.getText());
-            int cedula = Integer.parseInt(this.txtcedula.getText());
-            char sexo = this.rbH.isSelected() ? 'H' : 'M';
+            if (this.empleados.ValidarMail(this.txtCorreo.getText())) {
+                int id = Integer.parseInt(this.txtId.getText());
+                String nombre = this.txtnombre.getText();
+                String username = this.txtusuario.getText();
+                String correo = this.txtCorreo.getText();
+                String clave = SecurityKey.Encriptar(this.txtClave.getText());
+                int cedula = Integer.parseInt(this.txtcedula.getText());
+                char sexo = this.rbH.isSelected() ? 'H' : 'M';
 
-            Date fechaDate = this.rsfecha_nacimiento.getDatoFecha();
-            String fechaNacimientoString = formateo.format(fechaDate); //Utiliza esta funcion para pasar el formato
+                Date fechaDate = this.rsfecha_nacimiento.getDatoFecha();
+                String fechaNacimientoString = formateo.format(fechaDate); //Utiliza esta funcion para pasar el formato
 
-            String telefono = !this.txtTelefono.getText().isEmpty() ? this.txtTelefono.getText() : " ";
-            String direccion = !this.txtDireccion.getText().isEmpty() ? this.txtDireccion.getText() : " ";
-            String nombreTipo = this.cbTipo.getSelectedItem().toString();
+                String telefono = !this.txtTelefono.getText().isEmpty() ? this.txtTelefono.getText() : " ";
+                String direccion = !this.txtDireccion.getText().isEmpty() ? this.txtDireccion.getText() : " ";
+                String nombreTipo = this.cbTipo.getSelectedItem().toString();
 
-            int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar este elemento?");
+                int decision = JOptionPane.showConfirmDialog(null, "¿Estas seguro que deseas actualizar este elemento?");
 
-            if (decision == 0) {
-                this.empleados.update(id, nombre, username, correo,
-                        clave, cedula, sexo, fechaNacimientoString,
-                        telefono, direccion, nombreTipo);
-                this.tableEmpleados.setModel(this.empleados.readUnsets());
-                this.tablaTodo = empleados.read();
+                if (decision == 0) {
+                    this.empleados.update(id, nombre, username, correo,
+                            clave, cedula, sexo, fechaNacimientoString,
+                            telefono, direccion, nombreTipo);
+                    this.tableEmpleados.setModel(this.empleados.readUnsets());
+                    this.tablaTodo = empleados.read();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El correo es invalido", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -621,26 +626,29 @@ public class Empleados extends javax.swing.JInternalFrame {
         SimpleDateFormat formateo = new SimpleDateFormat(formatoFecha); //ESTO FORMATEA LA FECHA YA QUE ESTE NO RETORNA UN STRING
 
         if (validator()) {
+            if (this.empleados.ValidarMail(this.txtCorreo.getText())) {
+                String nombre = this.txtnombre.getText();
+                String username = this.txtusuario.getText();
+                String correo = this.txtCorreo.getText();
+                String clave = SecurityKey.Encriptar(this.txtClave.getText());
+                int cedula = Integer.parseInt(this.txtcedula.getText());
+                char sexo = this.rbH.isSelected() ? 'H' : 'M';
 
-            String nombre = this.txtnombre.getText();
-            String username = this.txtusuario.getText();
-            String correo = this.txtCorreo.getText();
-            String clave = SecurityKey.Encriptar(this.txtClave.getText());
-            int cedula = Integer.parseInt(this.txtcedula.getText());
-            char sexo = this.rbH.isSelected() ? 'H' : 'M';
+                Date fechaDate = this.rsfecha_nacimiento.getDatoFecha();
+                String fechaNacimientoString = formateo.format(fechaDate); //Utiliza esta funcion para pasar el formato
 
-            Date fechaDate = this.rsfecha_nacimiento.getDatoFecha();
-            String fechaNacimientoString = formateo.format(fechaDate); //Utiliza esta funcion para pasar el formato
+                String telefono = !this.txtTelefono.getText().isEmpty() ? this.txtTelefono.getText() : " ";
+                String direccion = !this.txtDireccion.getText().isEmpty() ? this.txtDireccion.getText() : " ";
+                String nombreTipo = this.cbTipo.getSelectedItem().toString();
 
-            String telefono = !this.txtTelefono.getText().isEmpty() ? this.txtTelefono.getText() : " ";
-            String direccion = !this.txtDireccion.getText().isEmpty() ? this.txtDireccion.getText() : " ";
-            String nombreTipo = this.cbTipo.getSelectedItem().toString();
-
-            this.empleados.create(nombre, username, correo,
-                    clave, cedula, sexo, fechaNacimientoString,
-                    telefono, direccion, nombreTipo);
-            this.tableEmpleados.setModel(this.empleados.readUnsets());
-            this.tablaTodo = empleados.read();
+                this.empleados.create(nombre, username, correo,
+                        clave, cedula, sexo, fechaNacimientoString,
+                        telefono, direccion, nombreTipo);
+                this.tableEmpleados.setModel(this.empleados.readUnsets());
+                this.tablaTodo = empleados.read();
+            } else {
+                JOptionPane.showMessageDialog(null, "El correo es invalido", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Revisa que ingresaste todos los datos correctamente", "Accion no realizada", JOptionPane.WARNING_MESSAGE);
         }
@@ -758,72 +766,63 @@ public class Empleados extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbHActionPerformed
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
-      char C= evt.getKeyChar();
-     
-     if(Character.isDigit(C))
-     {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
-         txtnombre.setCursor(null);
-     }
-     else if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
-             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
-             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-    {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo letras");
-         txtnombre.setCursor(null);
-     }
-     
+        char C = evt.getKeyChar();
+
+        if (Character.isDigit(C)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+            txtnombre.setCursor(null);
+        } else if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 91 && (int) evt.getKeyChar() <= 96
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+            txtnombre.setCursor(null);
+        }
+
     }//GEN-LAST:event_txtnombreKeyTyped
 
     private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
         // TODO add your handling code here:
-                 char C= evt.getKeyChar();
-     
-     if(Character.isLetter(C))
-     {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-         txtcedula.setCursor(null);
-     }
-     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<=47
-             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
-             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
-             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-    {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-         txtcedula.setCursor(null);
-     }
+        char C = evt.getKeyChar();
+
+        if (Character.isLetter(C)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+            txtcedula.setCursor(null);
+        } else if ((int) evt.getKeyChar() > 31 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 91 && (int) evt.getKeyChar() <= 96
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+            txtcedula.setCursor(null);
+        }
     }//GEN-LAST:event_txtcedulaKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         // TODO add your handling code here:
-         char C= evt.getKeyChar();
-     
-     if(Character.isLetter(C))
-     {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-         txtTelefono.setCursor(null);
-     }
-     else if((int)evt.getKeyChar()>31 && (int)evt.getKeyChar()<=47
-             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
-             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
-             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-    {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-         txtTelefono.setCursor(null);
-     }
+        char C = evt.getKeyChar();
+
+        if (Character.isLetter(C)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+            txtTelefono.setCursor(null);
+        } else if ((int) evt.getKeyChar() > 31 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 91 && (int) evt.getKeyChar() <= 96
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+            txtTelefono.setCursor(null);
+        }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
@@ -832,36 +831,34 @@ public class Empleados extends javax.swing.JInternalFrame {
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         // TODO add your handling code here:
-             char C= evt.getKeyChar();
-     
-             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<=47
-             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
-             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
-             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-    {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
-         txtusuario.setCursor(null);
-     }
-             
+        char C = evt.getKeyChar();
+
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() <= 47
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 91 && (int) evt.getKeyChar() <= 96
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+            txtusuario.setCursor(null);
+        }
+
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void txtusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyTyped
         // TODO add your handling code here:
-             char C= evt.getKeyChar();
-     
-             if((int)evt.getKeyChar()>32 && (int)evt.getKeyChar()<46
-             ||(int)evt.getKeyChar()>=58 && (int)evt.getKeyChar()<=64
-             || (int)evt.getKeyChar()>=91 && (int)evt.getKeyChar()<=96
-             || (int)evt.getKeyChar()>=123 && (int)evt.getKeyChar()<=255)
-    {
-         getToolkit().beep();
-         evt.consume();
-         JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
-         txtusuario.setCursor(null);
-     }
-        
+        char C = evt.getKeyChar();
+
+        if ((int) evt.getKeyChar() > 32 && (int) evt.getKeyChar() < 46
+                || (int) evt.getKeyChar() >= 58 && (int) evt.getKeyChar() <= 64
+                || (int) evt.getKeyChar() >= 91 && (int) evt.getKeyChar() <= 96
+                || (int) evt.getKeyChar() >= 123 && (int) evt.getKeyChar() <= 255) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras o numeros");
+            txtusuario.setCursor(null);
+        }
+
     }//GEN-LAST:event_txtusuarioKeyTyped
 
     private boolean validator() {

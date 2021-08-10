@@ -171,9 +171,10 @@ public class Index extends javax.swing.JFrame {
         btnFacturas1.setBounds(150, 440, 180, 60);
 
         lbEmpleado.setFont(new java.awt.Font("COCOGOOSE ", 0, 14)); // NOI18N
+        lbEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbEmpleado.setText("Bienvenido");
         desktopPane.add(lbEmpleado);
-        lbEmpleado.setBounds(940, 20, 330, 15);
+        lbEmpleado.setBounds(940, 20, 330, 19);
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publics/img/50561.jpg"))); // NOI18N
         Fondo.setRequestFocusEnabled(false);
