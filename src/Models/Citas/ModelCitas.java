@@ -90,11 +90,12 @@ public class ModelCitas {
 
             long fechaInterfaz = java.util.Date.parse(fecha_agendada);
             Date fecha = new Date(fechaInterfaz);
+            System.out.println("FECHA QUE LLEGA A SENTENCIA 2: "+fecha_agendada);
             String SQL = "CALL registrarCita(?,?,?,?,?)";
             PreparedStatement consulta = Index.connection.prepareStatement(SQL);
 
             consulta.setString(1, fecha_emision); // fecha_emision
-            consulta.setDate(2, fecha);
+            consulta.setString(2, fecha_agendada);
             consulta.setString(3, statusCita);
             consulta.setInt(4, idpaciente);
             consulta.setInt(5, idempleado);
@@ -103,7 +104,7 @@ public class ModelCitas {
             JOptionPane.showMessageDialog(null, "Cita registrada exitosamente", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar datos: " + e.getMessage(), "Accion no realizada", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al insertar datos, horario no disponible para cita " + e.getMessage(), "Accion no realizada", JOptionPane.ERROR_MESSAGE);
         }
     }
     
